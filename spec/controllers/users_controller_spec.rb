@@ -2,8 +2,9 @@ require 'spec_helper'
 
 describe UsersController do
   describe "GET 'show'" do
-    let(:user) { create(:user) }
-    
+
+    let(:user){ create(:user) }
+
     it 'should work' do
       get :show, id: user.id
       expect(response.status).to eq 200

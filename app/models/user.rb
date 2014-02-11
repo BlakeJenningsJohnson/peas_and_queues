@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
   validates :name, presence: true
   validates :uid, presence: true, uniqueness: true
   validates :provider, presence: true
-  validates :phone, 
+  validates :phone,
+            uniqueness: true, 
             format: { with: /\d/ },
             length: { is: 10, message: "must be at least ten numbers" },
             allow_nil: true
@@ -12,6 +13,7 @@ class User < ActiveRecord::Base
 
   def self.find_or_create_from_omniauth(auth_hash)
     user = User.find_by(uid: auth_hash["uid"]) || create_from_omniauth(auth_hash)
+    return user
     # user.update(token:         auth_hash["credentials"]["token"],
     #             secret:  auth_hash["credentials"]["secret"])
     # user
@@ -26,6 +28,7 @@ class User < ActiveRecord::Base
       # token:    auth_hash["credentials"]["token"],
       # secret:   auth_hash["credentials"]["secret"]
     )
+
     if user.valid? 
       user
     else

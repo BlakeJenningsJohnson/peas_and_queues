@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Post do
   context 'validations' do
       it 'is valid' do
-        expect(build(:post)).to be valid
+        expect(build(:post)).to be_valid
       end
 
       it 'has a title' do
