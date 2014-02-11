@@ -18,6 +18,7 @@ gem 'omniauth-twitter'
 # gem 'autoprefixer-rails'
 # gem 'less-rails'
 gem 'foundation-rails'
+gem 'httparty'
 
 group :development, :test do
   gem "rspec-rails"
