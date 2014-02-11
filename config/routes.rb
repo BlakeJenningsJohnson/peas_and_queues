@@ -1,4 +1,9 @@
 PeasAndQueues::Application.routes.draw do
+
+  root  'welcome#index'
+  match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
+
+  get '/users', to: 'users#show'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

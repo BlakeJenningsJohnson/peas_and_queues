@@ -10,14 +10,14 @@ FactoryGirl.define do
 
   factory :user1, class: User do
     name "Blake"
-    uid "abc123"
+    uid "abc598"
     provider "twitter"
     admin false
   end
 
 factory :admin, class: User do
     name "Blake"
-    uid "abc123"
+    uid "bleepbloop"
     provider "twitter"
     admin true
   end
