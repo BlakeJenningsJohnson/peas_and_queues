@@ -12,12 +12,8 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     if @event.save
-      @event.update(temperature:
-                      (WeatherReport.get_forecast(@event.date.strftime("%Y, %m, %d")
-                            ).temperature.round),
-                    conditions:
-                      (WeatherReport.get_forecast(@event.date.strftime("%Y, %m, %d")          
-                            ).icon))
+      weather = WeatherReport.get_forecast(@event.date.strftime("%Y, %m, %d"))
+      @event.update(temperature: weather.temperature.round, conditions: weather.icon)
       redirect_to events_path
     else
       render :new
