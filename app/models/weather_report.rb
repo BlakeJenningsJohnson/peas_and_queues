@@ -10,8 +10,8 @@ class WeatherReport
     get_weather.currently
   end
 
-  def self.get_forecast(time)
-    ForecastIO.forecast(47.6097, -122.3331, time)
+  def self.get_forecast(time_arg)
+    ForecastIO.forecast(47.6097, -122.3331, time: Time.new(time_arg).to_i).currently
   end
 
 end
