@@ -13,6 +13,7 @@ gem 'figaro'
 gem 'omniauth'
 gem 'omniauth-twitter'
 
+gem 'forecast_io'
 # gem 'semantic-ui-rails'
 # gem 'therubyracer', platforms: :ruby
 # gem 'autoprefixer-rails'
