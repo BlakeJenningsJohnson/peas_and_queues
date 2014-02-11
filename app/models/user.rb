@@ -1,4 +1,14 @@
 class User < ActiveRecord::Base
+  validates :name, presence: true
+  validates :uid, presence: true, uniqueness: true
+  validates :provider, presence: true
+  validates :phone, 
+            format: { with: /\d/ },
+            length: { is: 10, message: "must be at least ten numbers" },
+            allow_nil: true
+  validates :email, uniqueness: true, 
+            format: {with: /@/, message: "is not a valid address"}, 
+            allow_nil: true
 
   def self.find_or_create_from_omniauth(auth_hash)
     user = User.find_by(uid: auth_hash["uid"]) || create_from_omniauth(auth_hash)
