@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   
   protect_from_forgery with: :exception
+  before_action :weather_report
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -11,4 +12,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_path
   end
   helper_method :current_user
+
+  def weather_report
+    @weather_report = cache('weather_report', expires_in: 1.hour) do
+      WeatherReport.get_weather
+    end
+  end
 end
