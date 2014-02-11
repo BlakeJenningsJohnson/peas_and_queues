@@ -86,9 +86,19 @@
  
  
             <!-- Image -->
- 
+            
             <div class="large-4 small-6 columns">
-            <%= @weather_report.currently %>
+              <h4>Weather Today</h4><hr>
+              <ul>
+                <li><%= @weather_report.icon %></li>
+                <li>Temperature: <%= @weather_report.temperature.round %> &deg; F </li>
+                <li>Feels Like: <%= @weather_report.apparentTemperature.round %> &deg; F</li>
+                <% if @weather_report.precipType %>
+                <li>Chance of <%= @weather_report.precipType %> : <%= @weather_report.precipProbability%></li>
+                <% end %>
+
+              </ul>
+
             </div>
  
             <!-- End Image -->

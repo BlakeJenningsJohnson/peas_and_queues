@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   def weather_report
     @weather_report = cache('weather_report', expires_in: 1.hour) do
-      WeatherReport.get_weather
+      WeatherReport.current_weather
     end
   end
 end
