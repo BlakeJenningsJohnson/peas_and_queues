@@ -18,19 +18,14 @@ describe SessionsController do
 
         it "assigns the @current_user var" do
           get :create, provider: :twitter
-          expect(assigns(:current_user)).to be_an_instance_of User
-        end
-
-        it "assigns the session[:user_id]" do
-          get :create, provider: :twitter
-          expect(session[:user_id]).to eq assigns(:current_user).id
+          expect(assigns(:user)).to be_an_instance_of User
         end
 
       end
 
       context "when the user has already signed up" do
         before { request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:twitter] }
-        let!(:user) { Authorization.find_or_create_from_omniauth(OmniAuth.config.mock_auth[:twitter]) }
+        let!(:user) { User.find_or_create_from_omniauth(OmniAuth.config.mock_auth[:twitter]) }
 
         it "doesn't create another user" do
           get :create, provider: :twitter

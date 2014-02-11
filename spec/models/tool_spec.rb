@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Tool do
   context 'validations' do
     it 'is valid' do
-      expect(build(:tool)).to be valid
+      expect(build(:tool)).to be_valid
     end
 
     it 'has a name' do
