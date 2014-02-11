@@ -2,5 +2,4 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 jQuery ->
-  $('#event_date').datepicker()
-  dateFormat: 'dd-mm-yy'
+  $('#event_date').datepicker( { dateFormat: "yy-mm-dd" } )

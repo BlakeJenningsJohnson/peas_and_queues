@@ -1,7 +1,12 @@
 <h3> Events </h3>
 
 <div id='events'>
-  <%= calendar do |date| %>
+  <h2 id='month'>
+  <%= link_to "<", date: @date.prev_month %>
+  <%= @date.strftime("%B %Y") %>
+  <%= link_to ">", date: @date.next_month %>
+</h2>
+  <%= calendar @date do |date| %>
     <%= date.day %>
     <% if @events_by_date[date] %>
       <ul>
