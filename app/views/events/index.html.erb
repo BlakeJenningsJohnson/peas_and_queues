@@ -16,7 +16,9 @@
           </ul>
         <% end %>
       <% end %>
-
     </div>
   </div>
 </div>
+<% if current_user %>
+  <%= link_to 'Add an event!', new_event_path %>
+  <% end %>

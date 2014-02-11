@@ -14,8 +14,7 @@
       <!-- Title Area -->
       <li class="name">
         <h1>
-          <a href="#">
-            Peas 'n' Queues
+        <%= link_to "Peas 'n' Queues", root_path %>
           </a>
         </h1>
       </li>
@@ -32,7 +31,7 @@
           <ul class="dropdown">
             <li><label>Community</label></li>
             <li><a href="#">Tool Lending Library</a></li>
-                <li><a href="#">Calendar</a></li>
+                <li><%= link_to 'Calendar', events_path %></li>
             <li class="divider"></li>
             <li><label>News</label></li>
             <li><a href="#">Blog</a></li>
