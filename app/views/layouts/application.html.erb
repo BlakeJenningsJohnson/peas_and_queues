@@ -7,6 +7,43 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+   <!-- Navigation -->
+ 
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Title Area -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Peas 'n' Queues
+          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+      <!-- Right Nav Section -->
+      <ul class="right">
+          <li><%= link_to 'Sign In With Twitter', '/auth/twitter' %></li>
+        <li class="divider"></li>
+        <li class="has-dropdown">
+          <a href="#">Garden Resources</a>
+          <ul class="dropdown">
+            <li><label>Community</label></li>
+            <li><a href="#">Tool Lending Library</a></li>
+                <li><a href="#">Calendar</a></li>
+            <li class="divider"></li>
+            <li><label>News</label></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Weather</a></li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </nav>
+ 
+  <!-- End Top Bar -->
 
   <%= link_to 'Log In With Twitter', '/auth/twitter' %>
 

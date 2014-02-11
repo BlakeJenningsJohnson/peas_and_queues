@@ -13,10 +13,12 @@ gem 'figaro'
 gem 'omniauth'
 gem 'omniauth-twitter'
 
-gem 'semantic-ui-rails'
-gem 'therubyracer', platforms: :ruby
-gem 'autoprefixer-rails'
-gem 'less-rails'
+# gem 'semantic-ui-rails'
+# gem 'therubyracer', platforms: :ruby
+# gem 'autoprefixer-rails'
+# gem 'less-rails'
+gem 'foundation-rails'
+gem 'httparty'
 
 group :development, :test do
   gem "rspec-rails"
