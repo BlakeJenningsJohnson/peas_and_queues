@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 20140211180030) do
     t.time     "time"
     t.string   "name"
     t.string   "description"
+    t.string   "temperature"
+    t.string   "conditions"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

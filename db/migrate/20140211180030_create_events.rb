@@ -5,6 +5,8 @@ class CreateEvents < ActiveRecord::Migration
       t.time :time
       t.string :name
       t.string :description
+      t.string :temperature
+      t.string :conditions
 
       t.timestamps
     end

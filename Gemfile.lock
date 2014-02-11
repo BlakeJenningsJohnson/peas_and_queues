@@ -56,10 +56,16 @@ GEM
     factory_girl_rails (4.4.0)
       factory_girl (~> 4.4.0)
       railties (>= 3.0.0)
+    faraday (0.9.0)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.3)
     figaro (0.7.0)
       bundler (~> 1.0)
       rails (>= 3, < 5)
+    forecast_io (2.0.0)
+      faraday
+      hashie
+      multi_json
     formatador (0.2.4)
     foundation-rails (5.1.1.0)
       railties (>= 3.1.0)
@@ -103,6 +109,7 @@ GEM
     mono_logger (1.1.0)
     multi_json (1.8.4)
     multi_xml (0.5.5)
+    multipart-post (2.0.0)
     nio4r (1.0.0)
     oauth (0.4.7)
     omniauth (1.2.1)
@@ -216,6 +223,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   factory_girl_rails
   figaro
+  forecast_io
   foundation-rails
   guard-rspec
   httparty

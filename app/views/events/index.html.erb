@@ -1,20 +1,22 @@
-<h3> Events </h3>
-
-<div id='events'>
-  <h2 id='month'>
-  <%= link_to "<", date: @date.prev_month %>
-  <%= @date.strftime("%B %Y") %>
-  <%= link_to ">", date: @date.next_month %>
-</h2>
-  <%= calendar @date do |date| %>
-    <%= date.day %>
-    <% if @events_by_date[date] %>
-      <ul>
-        <% @events_by_date[date].each do |event| %>
-          <li><%= link_to event.name, event_path(event.id) %></li>
+<div class="row">
+  <div class='small-10 columns'>
+    <div id='events'>
+      <h2 id='month'>
+      <%= link_to "<", date: @date.prev_month %>
+      <%= @date.strftime("%B %Y") %>
+      <%= link_to ">", date: @date.next_month %>
+    </h2>
+      <%= calendar @date do |date| %>
+        <%= date.day %>
+        <% if @events_by_date[date] %>
+          <ul>
+            <% @events_by_date[date].each do |event| %>
+              <li><%= link_to event.name, event_path(event.id) %></li>
+            <% end %>
+          </ul>
         <% end %>
-      </ul>
-    <% end %>
-  <% end %>
+      <% end %>
 
+    </div>
+  </div>
 </div>
