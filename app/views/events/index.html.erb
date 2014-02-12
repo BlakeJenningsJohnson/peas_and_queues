@@ -11,15 +11,17 @@
         <% if @events_by_date[date] %>
           <ul>
             <% @events_by_date[date].each do |event| %>
-              <%= link_to event.name, '#inline', class: 'inline' %><br>
+            <li>
+              <%= link_to event.name, "#inline_#{event.name[0..3].strip!}", class: 'inline' %> <br>
               <div class='hidden'>
-                <div id='inline'>
+                <div id='inline_<%= event.name[0..3].strip! %>', style='background: #fff'>
                   <h2>Event: <%= event.name %></h2>
                   <p><%= event.description %></p>
                   Weather: <%= event.temperature %> &deg; <br>
                   Conditions: <%= event.conditions %><br>
                 </div>
               </div>
+            </li>
             <% end %>
           </ul>
         <% end %>
