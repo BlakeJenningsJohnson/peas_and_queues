@@ -24,8 +24,7 @@
     <section class="top-bar-section">
       <!-- Right Nav Section -->
       <ul class="right">
-        <% if current_user %>
-          Hello, <%= @current_user! %>
+
           <li><%= link_to 'Sign In With Twitter', '/auth/twitter' %></li>
         <li class="divider"></li>
         <li class="has-dropdown">
