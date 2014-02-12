@@ -18,5 +18,9 @@ describe Event do
     it 'should have a time' do
       expect(build(:event, time: nil)).to be_invalid 
     end
+
+    it 'should have a user_id' do
+      expect(build(:event, host_id: nil)).to be_invalid
+    end
   end
 end

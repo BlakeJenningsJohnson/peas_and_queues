@@ -6,5 +6,6 @@ FactoryGirl.define do
     time "10:00:31"
     name "MyString"
     description "MyString"
+    host_id 1
   end
 end

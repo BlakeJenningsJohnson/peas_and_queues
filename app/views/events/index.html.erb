@@ -19,6 +19,9 @@
                   <p><%= event.description %></p>
                   Weather: <%= event.temperature %> &deg; <br>
                   Conditions: <%= event.conditions %><br>
+                  <% if current_user && current_user.events.exclude?(event) %>
+                    <%= link_to 'RSVP to this event!', rsvp_path(event) %><br>
+                  <% end %>
                 </div>
               </div>
             </li>
