@@ -9,7 +9,7 @@ describe PostsController do
 
     describe "create" do
       context "with valid attributes" do
-      let(:valid_attributes) { {name: "Gardening with Hands", content: "I use my hands as shovels."}}
+      let(:valid_attributes) { {title: "Gardening with Hands", content: "I use my hands as shovels."}}
 
         it "successfully redirects after created" do
           post :create, post: valid_attributes
@@ -46,6 +46,8 @@ describe PostsController do
   end
       
   context "when a signed-in user is NOT admin" do
+    let(:valid_attributes) { {title: "Gardening with Hands", content: "I use my hands as shovels."}}
+
     before do 
       @current_user = create(:user)
       session[:user_id] = @current_user.id
@@ -64,7 +66,7 @@ describe PostsController do
 
     it "flashes a notice" do
       get :new
-      expect(flash[:notice]).to eq("You must be an admin to do that.")
+      expect(flash[:notice]).to eq("You have to be an admin to do that.")
     end
   end
 end
