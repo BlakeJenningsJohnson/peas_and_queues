@@ -15,6 +15,7 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 
 gem 'forecast_io'
+gem 'therubyracer', platforms: :ruby 
 gem 'foundation-rails'
 gem 'httparty'
 
