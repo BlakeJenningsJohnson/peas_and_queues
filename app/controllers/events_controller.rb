@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  layout false, only: [:show]
   def index
     @events = Event.all
     @events_by_date = @events.group_by(&:date)
