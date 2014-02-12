@@ -14,3 +14,11 @@
 
  *= require_tree .
  */
+
+ .hidden {
+  display: none;
+}
+
+#cboxClose {
+  float: right;
+}
