@@ -2,7 +2,8 @@
 
 FactoryGirl.define do
   factory :event do
-    date "2014-02-11 10:00:31"
+    date "2014-02-11"
+    time "10:00:31"
     name "MyString"
     description "MyString"
   end

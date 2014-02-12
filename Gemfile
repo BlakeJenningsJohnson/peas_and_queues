@@ -15,6 +15,7 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 
 gem 'forecast_io'
+gem 'rails_12factor'
 gem 'foundation-rails'
 gem 'httparty'
 
