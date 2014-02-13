@@ -9,8 +9,7 @@ PeasAndQueues::Application.routes.draw do
   get   '/users',                     to: 'users#show'
   get   '/users/:id/profile',         to: 'users#edit', as: :profile
   patch '/users/:id/profile',         to: 'users#update', as: :user
-
-  
+ 
   get   '/posts/new',                 to: 'posts#new',     as: :new_post
   post  '/posts',                     to: 'posts#create'
   get   '/posts',                     to: 'posts#index', as: :all_posts
