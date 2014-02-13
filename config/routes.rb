@@ -7,6 +7,7 @@ PeasAndQueues::Application.routes.draw do
   get '/events/new',                to: 'events#new', as: :new_event
   post '/events',                   to: 'events#create'
   get '/events/rsvp/:event',        to: 'events#rsvp', as: :rsvp
+  get '/events/:id/edit',           to: 'events#edit', as: :edit
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

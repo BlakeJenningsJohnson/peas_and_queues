@@ -23,6 +23,12 @@ class EventsController < ApplicationController
     end
   end
 
+  def update
+    @event = Event.find(params[:id])
+    @event = Event.update(event_params)
+    redirect_to events_path
+  end
+
   def rsvp
     @event = Event.find(params[:event])
     Event.add_events(current_user, @event)

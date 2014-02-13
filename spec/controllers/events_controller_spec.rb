@@ -13,11 +13,10 @@ describe EventsController do
   describe 'POST "create"' do
     context 'with valid attributes' do
     let(:valid_attributes) { {name: "Tool Tile", description: "Pointing out tools.", date: "2014-02-11", time: "12:30:00" } }
-    before do 
+    before do
       @current_user = create(:user)
       session[:user_id] = @current_user.id
     end
-
 
       it 'is a redirect' do
         post :create, event: valid_attributes
@@ -45,5 +44,46 @@ describe EventsController do
       end
     end
   end
+
+  
+  describe 'POST "update"' do
+    context 'user is updating their own event'
+      before do 
+          @current_user = create(:user)
+          session[:user_id] = @current_user.id
+        end
+      let(:event){ create(:event) }
+
+      it 'does update' do
+        patch :update, id: 1, event: { name: 'Weeding Party'}
+
+        expect(event.name).to eq('Weeding Party')
+      end
+    end
+
+    context "user is trying to update someone else's event" do
+      before do 
+          @current_user = create(:user)
+          session[:user_id] = @current_user.id
+        end
+      let(:event1){ create(:event1) }
+
+      it 'does not update' do
+        patch :update, id: 1, event: { name: 'Weeding Party' }
+
+        expect(event1.name).to be('Tool Time')
+      end
+    end
+
+    # it 'does update params' do
+    #   patch :update, id: 1, nerd: {
+    #                                     name: 'davida1'
+    #                                   }
+
+    #   expect(nerd.name).to eq('davida1')
+    # end
+
+
+  
 end
 

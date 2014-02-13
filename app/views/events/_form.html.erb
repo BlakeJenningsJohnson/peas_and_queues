@@ -1,0 +1,36 @@
+<% @event.errors.full_messages.each do |error| %>
+  <%= error %><br>
+<% end %>
+
+<div class='row'>
+  <div class='small-12 columns'>
+     <h3> Make a new event!</h3>
+    </div>
+</div>
+  <%= form_for @event do |f| %>
+    <div class='small-10 columns'>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div class='small-10 columns'>
+      <%= f.label :description %>
+      <%= f.text_area :description %>
+    </div>
+    <div class='row'>
+      <div class='small-4 columns'>
+        <div class='row collapse'>
+        <%= f.label :date %>
+        <%= f.text_field :date %>
+        </div>
+          <div class='row collapse'>
+        <%= f.label :time %>
+        <%= f.time_field :time %>
+        </div>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='small-4 columns'>
+        <%= f.submit class: 'button' %>
+      </div>
+    </div>
+  <% end %>

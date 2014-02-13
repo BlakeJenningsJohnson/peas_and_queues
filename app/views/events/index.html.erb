@@ -22,6 +22,9 @@
                   <% if current_user && current_user.events.exclude?(event) %>
                     <%= link_to 'RSVP to this event!', rsvp_path(event) %><br>
                   <% end %>
+                  <% if current_user && event.host_id == current_user.id %>
+                    <%= link_to 'Update this event!', edit_path(event.id) %>
+                  <% end %>
                 </div>
               </div>
             </li>
