@@ -1,0 +1,23 @@
+<% @post.errors.full_messages.each do |error| %>
+  <%= error %><br>
+<% end %>
+<div class='row'>
+  <div class='small-12 columns'>
+     <h3> New Blog Post:</h3>
+    </div>
+</div>
+  <%= form_for @post do |f| %>
+    <div class='small-10 columns'>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
+    <div class='small-10 columns'>
+      <%= f.label :content %>
+      <%= f.text_area :content %>
+    </div>
+    <div class='row'>
+      <div class='small-4 columns'>
+        <%= f.submit class: 'button' %>
+      </div>
+    </div>
+      <% end %>
