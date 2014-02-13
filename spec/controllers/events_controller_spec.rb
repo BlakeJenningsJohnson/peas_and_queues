@@ -74,16 +74,4 @@ describe EventsController do
         expect(event1.name).to eq 'Tool Time'
       end
     end
-
-    # it 'does update params' do
-    #   patch :update, id: 1, nerd: {
-    #                                     name: 'davida1'
-    #                                   }
-
-    #   expect(nerd.name).to eq('davida1')
-    # end
-
-
-  
 end
-

@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
 
-  def show
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
     @user = User.find(params[:id])
   end
 end
