@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
   validates :name, :date, :time, :host_id, presence: true
-  has_many :rsvp
+  has_many :rsvps
   has_many :users, through: :rsvp
 
   def self.add_events(user, event)
