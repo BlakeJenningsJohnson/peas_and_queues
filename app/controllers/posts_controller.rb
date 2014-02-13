@@ -29,7 +29,7 @@ class PostsController < ApplicationController
   
   def blog_blast
     User.all.each do |user|
-      BlogMailer.new_post_mailer(@post.id, user)
+      BlogMailer.new_post_mailer(@post.id, user.id).deliver
     end
   end
   

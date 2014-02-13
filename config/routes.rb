@@ -1,4 +1,8 @@
+require 'resque/server'
 PeasAndQueues::Application.routes.draw do
+
+  mount Resque::Server, :at => "/resque"
+  
   root  'welcome#index'
   match '/auth/:provider/callback',  to: 'sessions#create', via: [:get, :post]
   get   '/signout',                   to: 'sessions#destroy'
