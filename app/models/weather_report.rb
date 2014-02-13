@@ -11,9 +11,6 @@ class WeatherReport
   end
 
   def self.get_forecast(time_arg)
-    ForecastIO.forecast(47.6097, -122.3331, time: Time.new(time_arg).to_i).currently
+    ForecastIO.forecast(47.6097, -122.3331, time: time_arg.to_i).currently
   end
-
 end
-
-# WeatherReport.get_weather
