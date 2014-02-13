@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
+      Resque.enqueue(UpdatedJob, @user.id)
       redirect_to :back
     end
   end
