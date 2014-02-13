@@ -5,8 +5,9 @@ PeasAndQueues::Application.routes.draw do
   get   '/users',                    to: 'users#show'
   
   get   '/posts/new',                to: 'posts#new',     as: :new_post
-  post  '/posts/new',                to: 'posts#create'
-  get   '/posts',                    to: 'posts#index', as: :posts
+  post  '/posts',                    to: 'posts#create'
+  get   '/posts',                    to: 'posts#index', as: :all_posts
+  get    '/posts/:id',               to: 'post#show', as: :post
 
   get   '/events',                   to: 'events#index'
   get   '/events/new',               to: 'events#new', as: :new_event
