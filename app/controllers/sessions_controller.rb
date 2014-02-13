@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
       
       if @user
         session[:user_id] = @user.id
+        flash[:notice] = "Welcome to PeasnCukes!"
         redirect_to "/"
       else
         redirect_to "/", notice: "Failed to save user."
@@ -20,6 +21,7 @@ class SessionsController < ApplicationController
   def destroy
     session.destroy
     session[:user_id] = nil
+    flash[:notice] = "You have signed out."
     redirect_to root_path
   end
 end

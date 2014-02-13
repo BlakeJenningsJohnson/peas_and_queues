@@ -8,11 +8,13 @@ PeasAndQueues::Application.routes.draw do
   get   '/signout',                  to: 'sessions#destroy'
 
   get   '/users',                    to: 'users#show'
+  get   '/users/:id/profile',        to: 'users#edit', as: :profile
+  patch '/users/:id/profile',        to: 'users#update', as: :user
   
   get   '/posts/new',                to: 'posts#new',     as: :new_post
   post  '/posts',                    to: 'posts#create'
   get   '/posts',                    to: 'posts#index', as: :all_posts
-  get   '/posts/:id',                to: 'post#show', as: :post
+  get   '/posts/:id',                to: 'posts#show', as: :post
 
   get   '/events',                   to: 'events#index'
   get   '/events/new',               to: 'events#new', as: :new_event

@@ -1,10 +1,11 @@
 class ToolsController < ApplicationController
 
   def new
-    if current_user.try(:admin) != true
-      redirect_to root_url, notice: "You have to be an admin to do that."
+    if current_user.try(:admin) == true
+      @tool = Tool.new 
     else
-      @tool = Tool.new
+      flash[:notice] = "You have to be an admin to do that."
+      redirect_to root_url
     end
   end
 

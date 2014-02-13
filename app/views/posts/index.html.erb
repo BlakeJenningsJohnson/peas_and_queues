@@ -1,5 +1,6 @@
+<h1>Things to Mulch Over: A Garden Blog</h1>
 <% @posts.each do |post| %>
-  <h1><%= post.title %></h1>
+  <h1><%= link_to post.title, post_path(post.id) %></h1>
   <h3>Written by <%= User.find(post.user_id).name %></h2>
   <%= post.content %>
 <% end %>

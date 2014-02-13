@@ -50,9 +50,10 @@
 
  
   <!-- End Top Bar -->
+<%= flash[:notice] %>
 
 <%= yield %>
-
+  <% if current_user %>
     <div id="myModal" class="reveal-modal" data-reveal>
         <%= form_for current_user  do |f| %>
     <div class='small-10 columns'>
@@ -66,6 +67,7 @@
     <%= f.submit %>
     <!-- id:'ajax-submit', class: "close-reveal-modal", remote:true -->
     <br><br><br>
+    <% end %>
   <% end %>
     </div>
 
