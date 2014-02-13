@@ -23,10 +23,12 @@ class ToolsController < ApplicationController
     @tool = Tool.find(params[:id])
     if @tool.available == false
       @tool.available = true
+      @tool.user_id = nil
       flash[:notice] = "Thank you for returning your tool."
     else
       @tool.available = false
-      flash[:notice] = "You have rented a #{@tool.names}. Don't forget to return it!"
+      @tool.user_id = current_user.id
+      flash[:notice] = "You have rented a #{@tool.name}. Don't forget to return it!"
     end
     @tool.save
     redirect_to all_tools_path

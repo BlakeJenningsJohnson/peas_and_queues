@@ -57,21 +57,22 @@ describe ToolsController do
   end
 
   context "when a user is signed in" do
+    let!(:tool){ create(:tool) }
+    let(:current_user) { create(:user)}
+
     before do 
-      @current_user = create(:user)
-      @tool = create(:tool)
-      session[:user_id] = @current_user.id
+      session[:user_id] = current_user.id
     end
 
     describe "a tool can be rented" do
       it "changes the tool's status to rented" do
-        patch :rent_or_return, available: false
-        expect(@tool.available).to eq(false)
+        patch :rent_or_return, id: tool.id 
+        expect(tool.reload.available).to eq(false)
       end
 
       it "establishes the user as the person renting" do
-        patch :rent_or_return, available: false
-        expect(assigns(:tool).user_id).to eq(@current_user.id)
+        patch :rent_or_return, id: tool.id
+        expect(tool.reload.user_id).to eq(current_user.id)
       end
     end
   end
