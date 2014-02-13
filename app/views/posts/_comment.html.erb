@@ -1,12 +1,9 @@
-<%= @form_for @comment do |f| %>
-<div class='small-10 columns'>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-</div>
+<%= form_for [@post, @comment] do |f| %>
+
 <div class='small-10 columns'>
   <%= f.label :comment %>
   <%= f.text_area :comment %>
 </div>
-<div class='small-4 columns'>  
+  <%= f.hidden_field :post_id, value: @post.id %>
   <%= f.submit class: 'button' %>
-</div>
+<% end %>
