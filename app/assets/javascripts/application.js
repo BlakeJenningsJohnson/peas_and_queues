@@ -20,4 +20,17 @@ $(function(){ $(document).foundation(); });
 
 $(document).ready(function(){
   $('.inline').colorbox( { inline:true, width:"50%" } );
-  });
+  // $('#form.edit_user').submit(function (e) {
+  //   console.log('hello')
+
+  //   $.ajax({
+  //       type: 'POST',
+  //       url: url,
+  //       data: $('#ajax-submit').serialize(),
+  //       success: function (data) {
+  //           $('#myModal').reveal();
+  //       }
+  //   });
+  //   e.preventDefault();
+  // });
+});

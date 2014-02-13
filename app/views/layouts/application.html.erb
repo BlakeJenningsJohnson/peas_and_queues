@@ -54,7 +54,19 @@
 <%= yield %>
 
     <div id="myModal" class="reveal-modal" data-reveal>
-      <%= render 'users/profile' %>
+        <%= form_for current_user  do |f| %>
+    <div class='small-10 columns'>
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+    <div class='small-10 columns'>
+      <%= f.label :phone %>
+      <%= f.text_field :phone %>
+    </div>
+    <%= f.submit %>
+    <!-- id:'ajax-submit', class: "close-reveal-modal", remote:true -->
+    <br><br><br>
+  <% end %>
     </div>
 
   </div>

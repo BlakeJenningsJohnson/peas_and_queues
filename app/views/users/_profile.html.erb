@@ -7,14 +7,6 @@
       <%= f.label :phone %>
       <%= f.text_field :phone %>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <%= f.submit class: "ajax_submit" %><br><br><br>
-    <div class="close-reveal-modal">Cancel</div>
+    <%= f.submit %> 
+    # add id:'ajax-submit', class: "close-reveal-modal", remote:true back in to get ajax to work when you figure that out
   <% end %>
