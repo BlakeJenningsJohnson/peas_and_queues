@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
-  layout false, only: [:show]
+  before_action :find_event, only: [:rsvp, :edit, :update]
+
 
   def index
     @events = Event.all
@@ -23,19 +24,26 @@ class EventsController < ApplicationController
     end
   end
 
+  def edit
+    redirect_to events_path unless current_user.id == @event.host_id
+  end
+
   def update
-    @event = Event.find(params[:id])
-    @event = Event.update(event_params)
-    redirect_to events_path
+    if @event.update(event_params)
+      redirect_to events_path
+    end
   end
 
   def rsvp
-    @event = Event.find(params[:event])
     Event.add_events(current_user, @event)
     redirect_to :back
   end
 
   private
+
+  def find_event
+    @event = Event.find(params[:id])
+  end
 
   def event_params
     params.require(:event).permit(:name, :description, :date, :time, :conditions, :temperature, :host_id)

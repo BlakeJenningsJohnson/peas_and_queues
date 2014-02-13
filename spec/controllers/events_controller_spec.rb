@@ -55,9 +55,9 @@ describe EventsController do
       let(:event){ create(:event) }
 
       it 'does update' do
-        patch :update, id: 1, event: { name: 'Weeding Party'}
+        patch :edit, id: event.id, event: { name: 'Weeding Party'}
 
-        expect(event.name).to eq('Weeding Party')
+        expect(event.name).to eq 'Weeding Party' 
       end
     end
 
@@ -69,9 +69,9 @@ describe EventsController do
       let(:event1){ create(:event1) }
 
       it 'does not update' do
-        patch :update, id: 1, event: { name: 'Weeding Party' }
+        patch :edit, id: event1.id, event: { name: 'Weeding Party' }
 
-        expect(event1.name).to be('Tool Time')
+        expect(event1.name).to eq 'Tool Time'
       end
     end
 
