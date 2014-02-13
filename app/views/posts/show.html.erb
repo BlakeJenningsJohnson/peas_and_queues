@@ -1,4 +1,6 @@
 <h1><%= @post.title %></h1>
 <p><%= @post.content %></p>
 
+<%= render 'comment' %>
+
 <%= link_to 'Back to Blog', all_posts_path %>
