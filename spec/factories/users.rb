@@ -6,6 +6,7 @@ FactoryGirl.define do
     uid "abc123"
     provider "twitter"
     admin false
+    id 1
   end
 
   factory :user1, class: User do
@@ -13,6 +14,7 @@ FactoryGirl.define do
     uid "abc598"
     provider "twitter"
     admin false
+    id 2
   end
 
 factory :admin, class: User do
@@ -20,5 +22,6 @@ factory :admin, class: User do
     uid "bleepbloop"
     provider "twitter"
     admin true
+    id 3
   end
 end

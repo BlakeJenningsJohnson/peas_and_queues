@@ -11,6 +11,9 @@ class User < ActiveRecord::Base
             format: {with: /@/, message: "is not a valid address"}, 
             allow_nil: true
 
+  has_many :rsvp
+  has_many :events, through: :rsvp
+
   def self.find_or_create_from_omniauth(auth_hash)
     user = User.find_by(uid: auth_hash["uid"]) || create_from_omniauth(auth_hash)
     return user
