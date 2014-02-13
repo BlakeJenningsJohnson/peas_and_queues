@@ -16,4 +16,10 @@ class SessionsController < ApplicationController
       redirect_to "/", notice: "Failed to authenticate. Please try again."
     end
   end
+
+  def destroy
+    session.destroy
+    session[:user_id] = nil
+    redirect_to root_path
+  end
 end

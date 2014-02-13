@@ -1,6 +1,7 @@
 PeasAndQueues::Application.routes.draw do
   root  'welcome#index'
   match '/auth/:provider/callback',  to: 'sessions#create', via: [:get, :post]
+  get   '/signout',                   to: 'sessions#destroy'
 
   get   '/users',                    to: 'users#show'
   
