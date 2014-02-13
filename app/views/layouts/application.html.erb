@@ -24,8 +24,11 @@
     <section class="top-bar-section">
       <!-- Right Nav Section -->
       <ul class="right">
-
+          <% if current_user %>
+          <li><%= link_to 'Sign Out', '/signout' %></li>
+          <% else %>
           <li><%= link_to 'Sign In With Twitter', '/auth/twitter' %></li>
+          <% end %>
         <li class="divider"></li>
         <li class="has-dropdown">
           <a href="#">Garden Resources</a>

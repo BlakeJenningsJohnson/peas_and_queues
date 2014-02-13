@@ -1,0 +1,7 @@
+class EmailJob
+  @queue = :email 
+
+  def self.perform(post_id, user_id)
+    BlogMailer.new_post_mailer(post_id, user_id).deliver
+  end
+end
