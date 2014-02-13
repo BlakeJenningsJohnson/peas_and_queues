@@ -1,0 +1,23 @@
+<% @tool.errors.full_messages.each do |error| %>
+  <%= error %><br>
+<% end %>
+<div class='row'>
+  <div class='small-12 columns'>
+   <h3>Add a tool:</h3>
+  </div>
+</div>
+  <%= form_for @tool do |f| %>
+  <div class='small-10 columns'>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class='small-10 columns'>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+  <div class='row'>    
+    <div class='small-4 columns'>
+    <%= f.submit class: 'button' %>
+    </div>
+  </div>
+  <% end %>

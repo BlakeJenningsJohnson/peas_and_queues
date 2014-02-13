@@ -8,6 +8,10 @@ class ToolsController < ApplicationController
     end
   end
 
+  def index
+    @tools = Tool.all
+  end
+  
   def create
     @tool = Tool.new(tool_params)
     if @tool.save
@@ -21,14 +25,14 @@ class ToolsController < ApplicationController
 
   def rent_or_return
     @tool = Tool.find(params[:id])
-    if @tool.available == false
-      @tool.available = true
-      @tool.user_id = nil
-      flash[:notice] = "Thank you for returning your tool."
+    if  @tool.available == false
+        @tool.available = true
+        @tool.user_id = nil
+        flash[:notice] = "Thank you for returning your tool."
     else
-      @tool.available = false
-      @tool.user_id = current_user.id
-      flash[:notice] = "You have rented a #{@tool.name}. Don't forget to return it!"
+        @tool.available = false
+        @tool.user_id = current_user.id
+        flash[:notice] = "You have rented a #{@tool.name}. Don't forget to return it!"
     end
     @tool.save
     redirect_to all_tools_path
