@@ -18,7 +18,14 @@
                   <h2>Event: <%= event.name %></h2>
                   <p><%= event.description %></p>
                   Weather: <%= event.temperature %> &deg; <br>
-                  Conditions: <%= event.conditions %><br>
+                  Conditions: <%= event.conditions %><br><br>
+                  Attendees:
+                  <% event.users.each do |attendee| %>
+                     <ul>
+                      <li><%= attendee.name %> </li>
+                    </ul>
+              
+                  <% end %>
                   <% if current_user && current_user.events.exclude?(event) %>
                     <%= link_to 'RSVP to this event!', rsvp_path(event.id) %><br>
                   <% end %>
