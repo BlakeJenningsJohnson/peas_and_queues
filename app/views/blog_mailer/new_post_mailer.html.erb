@@ -4,7 +4,7 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body><a href="http://www.peas-n-cukes.herokuapp.com/">Peas-n-Cukes</a>
-    <h2>Hi, <%#= @user.name %> </h2>
+    <h2>Hi, <%= @user.name %> </h2>
     <h1>There's new things to mulch over on our blog!</h1>
     <p>
       View our newest blog post, <%= link_to @post.title, post_url(@post.id) %>
