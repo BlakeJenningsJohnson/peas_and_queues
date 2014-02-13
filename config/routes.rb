@@ -7,7 +7,7 @@ PeasAndQueues::Application.routes.draw do
   match '/auth/:provider/callback',  to: 'sessions#create', via: [:get, :post]
   get   '/signout',                  to: 'sessions#destroy'
 
-  get   '/users',                    to: 'users#show'
+  get   '/users',                    to: 'users#show', as: :user_show
   get   '/users/:id/profile',        to: 'users#edit', as: :profile
   patch '/users/:id/profile',        to: 'users#update', as: :user
   

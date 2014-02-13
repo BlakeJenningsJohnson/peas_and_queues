@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to :back
+      redirect_to user_show_path
     end
   end
 
@@ -17,7 +17,7 @@ private
   end
 
   def user_params
-    params.require(:user).permit(:email,
+    params.require(:user).permit(:name, :email,
                                  :phone)
   end
 end

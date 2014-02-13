@@ -18,11 +18,14 @@ describe UsersController do
   end
 # 
   describe "POST 'update'" do
-    # let(:updated_attr) { { name: 'blake', email: 'user@user.com'} }
+    let(:updated_attr) { { name: 'blake', email: 'user@user.com'} }
     let(:user) { create(:user) }
 
-    post :update, id: user.id, user: updated_attr
-    expect(user.email).to eq 'user@user.com'
-    expect(user.name).to eq 'blake'
+    it "should update the user's attributes" do
+      post :update, id: user.id, user: updated_attr
+      user.reload
+      expect(user.email).to eq 'user@user.com'
+      expect(user.name).to eq 'blake'
+    end
   end
 end
