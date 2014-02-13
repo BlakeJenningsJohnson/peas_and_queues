@@ -7,7 +7,7 @@
     <h2>Hi, <%#= @user.name %> </h2>
     <h1>There's new things to mulch over on our blog!</h1>
     <p>
-      View our newest blog post, <%= link_to @post.title, post_path(@post.id) %>
+      View our newest blog post, <%= link_to @post.title, post_url(@post.id) %>
     </p>
     <p>Dig in!</p>
   </body>
