@@ -18,6 +18,7 @@ gem 'forecast_io'
 gem 'rails_12factor'
 gem 'foundation-rails'
 gem 'httparty'
+gem 'acts_as_commentable'
 
 group :development, :test do
   gem "rspec-rails"

@@ -3,13 +3,12 @@ PeasAndQueues::Application.routes.draw do
   mount Resque::Server, :at => "/resque"
 
   root  'welcome#index'
+  get   '/users',                     to: 'users#show'
+  get   '/users/:id/profile',         to: 'users#edit', as: :profile
+  patch '/users/:id/profile',         to: 'users#update', as: :user
 
   match '/auth/:provider/callback',  to: 'sessions#create', via: [:get, :post]
   get   '/signout',                  to: 'sessions#destroy'
-
-  get   '/users',                    to: 'users#show'
-  get   '/users/:id/profile',        to: 'users#edit', as: :profile
-  patch '/users/:id/profile',        to: 'users#update', as: :user
   
   get   '/posts/new',                to: 'posts#new',     as: :new_post
   post  '/posts',                    to: 'posts#create'
