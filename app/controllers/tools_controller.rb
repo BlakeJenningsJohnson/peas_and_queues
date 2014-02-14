@@ -27,11 +27,11 @@ class ToolsController < ApplicationController
   def rent_or_return
     @tool = Tool.find(params[:id])
     if  @tool.available == false
-        @tool.available = true
+        @tool.update(available: true)
         @tool.user_id = nil
         flash[:notice] = "Thank you for returning your tool."
     else
-        @tool.available = false
+        @tool.update(available: false)
         @tool.user_id = current_user.id
         flash[:notice] = "You have rented a #{@tool.name}. Don't forget to return it!"
     end

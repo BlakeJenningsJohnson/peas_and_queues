@@ -1,7 +1,47 @@
 <h1>TOOL BOX GIT YER TOOLS HERE</h1>
 
-<% @tools.each do |tool| %>
-  <%= tool.name %>
-  <%= tool.description %>
-  <%= tool.available %>
-<% end %>
+<%# @tools.each do |tool| %>
+  <%#= tool.name %>
+  <%#= tool.description %>
+  <%#= tool.available %>
+<%# end %>
+
+<table>
+  <thead>
+    <tr>
+      <th width="200">Tool</th>
+      <th>Description</th>
+      <th width="150">In the Box?</th>
+      <th width="150">Rent or Return</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tools.each do |tool| %>
+    <tr>
+      <td><%= tool.name %></td>
+      <td><%= tool.description %></td>
+      <% if tool.available? %>
+        <td>YUP!</td>
+      <% elsif current_user && tool.user_id == current_user.id %>
+          <td>You've got it!</td>
+      <% else %>
+          <td> NOT TODAY! </td>
+      <% end %>
+
+      <% if current_user %>
+        <% if tool.available? %> 
+          <td><%= button_to "Rent It", rent_return_path(tool.id), :method => :rent_or_return %></td>
+        <% elsif %>
+          <% if tool.user_id == current_user.id %> 
+            <td><%= button_to "Return It", rent_return_path(tool.id), :method => :rent_or_return %></td>
+          <% else %> 
+            <td><%= button_to "Get in the queue NW" %></td>
+          <% end %> 
+        <% else %>
+          <td><%= button_to "Sign in to rent a tool", '/auth/twitter' %>
+        <% end %>
+      <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
