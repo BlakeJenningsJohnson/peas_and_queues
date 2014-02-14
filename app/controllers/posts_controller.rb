@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :set_post, only: [:show, :add_new_comment]
 
   def new
     if current_user.admin != true
@@ -20,7 +21,8 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @comment = @post.comments.new
+    @comments = @post.comments.order('created_at ASC').limit(3)
   end
 
   def index
@@ -34,6 +36,10 @@ class PostsController < ApplicationController
   end
   
 private
+
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
   def post_params
     params.require(:post).permit(:title, :content, :user_id)

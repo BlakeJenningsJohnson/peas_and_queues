@@ -16,7 +16,7 @@ describe UsersController do
       expect(assigns(:user)).to eq user
     end
   end
-# 
+
   describe "POST 'update'" do
     let(:updated_attr) { { name: 'blake', email: 'user@user.com'} }
     let(:user) { create(:user) }
