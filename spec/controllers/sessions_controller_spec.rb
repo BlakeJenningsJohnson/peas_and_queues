@@ -15,7 +15,6 @@ describe SessionsController do
           expect { get :create, provider: :twitter }.to change(User, :count).by(1)
         end
 
-
         it "assigns the @current_user var" do
           get :create, provider: :twitter
           expect(assigns(:user)).to be_an_instance_of User
