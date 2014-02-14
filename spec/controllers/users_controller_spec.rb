@@ -22,7 +22,7 @@ describe UsersController do
     let(:user) { create(:user) }
 
     it "should update the user's attributes" do
-      post :update, id: user.id, user: updated_attr
+      xhr :put, :update, :format => "json", id: user.id, user: updated_attr
       user.reload
       expect(user.email).to eq 'user@user.com'
       expect(user.name).to eq 'blake'
