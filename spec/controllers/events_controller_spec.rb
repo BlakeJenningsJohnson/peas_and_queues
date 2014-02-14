@@ -52,12 +52,13 @@ describe EventsController do
           @current_user = create(:user)
           session[:user_id] = @current_user.id
         end
+
       let(:event){ create(:event) }
 
       it 'does update' do
         patch :update, id: event.id, event: { name: 'Weeding Party'}
-
-        expect(event.reload.name).to eq 'Weeding Party' 
+        event.reload
+        expect(event.name).to eq 'Weeding Party' 
       end
     end
 
@@ -66,6 +67,7 @@ describe EventsController do
           @current_user = create(:user)
           session[:user_id] = @current_user.id
         end
+
       let(:event1){ create(:event1) }
 
       it 'does not update' do
