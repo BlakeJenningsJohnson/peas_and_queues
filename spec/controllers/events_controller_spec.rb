@@ -57,7 +57,6 @@ describe EventsController do
 
       it 'does update' do
         patch :update, id: event.id, event: { name: 'Weeding Party'}
-
         event.reload
         expect(event.name).to eq 'Weeding Party' 
       end

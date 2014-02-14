@@ -1,4 +1,12 @@
 <h1><%= @post.title %></h1>
 <p><%= @post.content %></p>
 
+<h3>Comments</h3>
+<%= render 'recent_comments'  %>
+
+<h3> Got somethin' to say? Add a comment! </h3>
+
+<%= render 'comment' %>
+
+
 <%= link_to 'Back to Blog', all_posts_path %>
