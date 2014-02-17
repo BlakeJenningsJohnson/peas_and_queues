@@ -16,6 +16,7 @@
               <div class='hidden'>
                 <div id='inline_<%= event.id %>', style='background: #fff; padding: 20px;'>
                   <h2>Event: <%= event.name %></h2>
+                  <p> <%= event.date.strftime('%A, %b %d') %>, at <%= event.time.strftime('%H:%M %p') %></p>
                   <p><%= event.description %></p>
                   Weather forecast:
                   <% if event.temperature == nil %>
