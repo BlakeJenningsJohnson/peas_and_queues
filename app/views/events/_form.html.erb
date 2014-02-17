@@ -7,7 +7,7 @@
      <h3> Make a new event!</h3>
     </div>
 </div>
-  <%= form_for @event do |f| %>
+  <%= form_for(@event, id: 'events') do |f| %>
     <div class='small-10 columns'>
       <%= f.label :name %>
       <%= f.text_field :name %>

@@ -49,5 +49,10 @@
   </div>
 </div>
 <% if current_user %>
-  <%= link_to 'Add an event!', new_event_path %>
-  <% end %>
+  <%= link_to 'Add An Event!', new_event_path, "data-reveal-id" => "eventModal"  %>
+<!--   <#%= link_to 'Add an event!', new_event_path %>
+ -->  <% end %>
+
+   <div id="eventModal" class="reveal-modal" data-reveal>
+        <%= render 'form' %>
+      </div>
