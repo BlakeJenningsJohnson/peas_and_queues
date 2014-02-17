@@ -16,7 +16,6 @@ class SessionsController < ApplicationController
     else
       redirect_to "/", notice: "Failed to authenticate. Please try again."
     end
-    puts @user
   end
 
   def destroy
