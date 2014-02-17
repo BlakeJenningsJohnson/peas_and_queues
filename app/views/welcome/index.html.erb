@@ -30,58 +30,34 @@
       </div><br>
  
     <!-- End Mobile Header -->
+
  
  
       <div class="row">
-        <div class="large-12 columns">
+        <div class="large-13 columns">
           <div class="row">
             <!-- Events -->
             <div class="large-4 small-6 columns">
  
-              <h4>Upcoming Events</h4><hr>
- 
+              <h4>Events This Week</h4><hr>
+                <% @events.each do |event| %>
               <div class="row">
-                <div class="large-1 column">
-                  <img src="http://placehold.it/50x50&text=[img]">
-                </div>
  
                 <div class="large-9 columns">
-                  <h5 class="subheader">Community Weeding with Blake </h5>
-                </div>
-              </div><hr>
- 
-              <div class="hide-for-small">
-                <div class="row">
-                  <div class="large-1 column">
-                    <img src="http://placehold.it/50x50&text=[img]">
-                  </div>
- 
-                  <div class="large-9 columns">
-                    <h5 class="subheader">Tool Time With Davida</h5>
-                  </div>
-                </div><hr>
- 
-                <div class="row">
-                  <div class="large-1 column">
-                    <img src="http://placehold.it/50x50&text=[img]">
-                  </div>
- 
-                  <div class="large-9 columns">
-                    <h5 class="subheader"><a href="#">Venue Name</a></h5>
-                  </div>
-                </div><hr>
- 
-                <div class="row">
-                  <div class="large-1 column">
-                    <img src="http://placehold.it/50x50&text=[img]">
-                  </div>
- 
-                  <div class="large-9 columns">
-                    <h5 class="subheader"><a href="#">Venue Name</a></h5>
-                  </div>
+                  <h5 class="subheader"><%= event.name %> </h5>
+                  <p><%= event.date.strftime('%A, %b %d') %>, at <%= event.time.strftime('%H:%M %p') %></p>
+                  <p>Hosted by: <%= User.find(event.host_id).name %><p>
                 </div>
               </div>
-            </div>
+              <hr>
+                <% end %>
+                <div class="row">
+                </div>
+                <div class="row">
+                </div>
+                <div class="row">
+                </div>
+              </div>
             <!-- End Shows -->
  
  
@@ -128,7 +104,6 @@
               </div>
  
               <a href="#" class="right">Go To Blog »</a>
- 
             </div>
  
             <!-- End Feed -->
@@ -152,10 +127,7 @@
  
               <div class="large-6 small-12 columns">
                   <ul class="inline-list right">
-                    <li><a href="#">Link 1</a></li>
-                    <li><a href="#">Link 2</a></li>
-                    <li><a href="#">Link 3</a></li>
-                    <li><a href="#">Link 4</a></li>
+                    <li><%= link_to 'Am I Going To Die?', 'http://amigoingtodie.org' %></li>
                   </ul>
               </div>
  
