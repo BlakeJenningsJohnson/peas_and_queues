@@ -16,10 +16,11 @@ class SessionsController < ApplicationController
     else
       redirect_to "/", notice: "Failed to authenticate. Please try again."
     end
+    puts @user
   end
 
   def destroy
-    session.destroy
+    session.destroy # do we need to destroy the whole session?
     session[:user_id] = nil
     flash[:notice] = "You have signed out."
     redirect_to root_path

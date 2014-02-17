@@ -26,7 +26,16 @@ describe EventsController do
       it 'changes event count by 1' do
         expect { post :create, event: valid_attributes }.to change(Event, :count).by(1)
       end
+      
+      describe 'it is a recurring event' do
+        let(:valid_attributes) { {name: "Tool Tile", description: "Pointing out tools.", date: "2014-02-11", time: "12:30:00", recurring: true } }
+        it 'creates 52 of the same event' do
+          expect { post :create, event: valid_attributes }.to change(Event, :count).by(52)
+        end
+      end
+
     end
+
 
     context 'with invalid attributes' do
       before do 

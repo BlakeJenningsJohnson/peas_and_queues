@@ -34,7 +34,7 @@ class EventsController < ApplicationController
 
   def create_recurring
     n = 1
-    52.times do
+    51.times do
       make_event
       @event.update(date: (@event.date + (7*n)))
       @event.save
