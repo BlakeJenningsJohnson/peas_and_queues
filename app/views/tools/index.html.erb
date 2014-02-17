@@ -21,11 +21,11 @@
       <td><%= tool.name %></td>
       <td><%= tool.description %></td>
       <% if tool.available? %>
-        <td>YUP!</td>
+        <td>Yes</td>
       <% elsif current_user && tool.user_id == current_user.id %>
-          <td>You've got it!</td>
+          <td> You've got it! </td>
       <% else %>
-          <td> NOT TODAY! </td>
+          <td> Nope-- checked out! </td>
       <% end %>
 
       <% if current_user %>
@@ -37,9 +37,9 @@
           <% else %> 
             <td><%= button_to "Get in the queue NW" %></td>
           <% end %> 
-        <% else %>
-          <td><%= button_to "Sign in to rent a tool", '/auth/twitter' %>
         <% end %>
+      <% else %>
+        <td><%= button_to "Sign in to rent a tool", '/auth/twitter' %>
       <% end %>
     </tr>
     <% end %>
