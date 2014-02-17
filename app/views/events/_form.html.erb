@@ -7,7 +7,7 @@
      <h3> Make a new event!</h3>
     </div>
 </div>
-  <%= form_for(@event, id: 'events') do |f| %>
+  <%= form_for @event do |f| %>
     <div class='small-10 columns'>
       <%= f.label :name %>
       <%= f.text_field :name %>
@@ -34,7 +34,7 @@
     </div>
     <div class='row'>
       <div class='small-4 columns'>
-        <%= f.button type: 'button', id: 'event_submit' %>
+        <%= f.submit class: 'button' %>
       </div>
     </div>
   <% end %>

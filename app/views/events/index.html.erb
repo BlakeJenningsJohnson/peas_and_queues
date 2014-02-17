@@ -1,10 +1,14 @@
 <div class="row">
-  <div class='small-10 columns'>
+  <div class='small-12 columns'>
     <div id='events'>
       <h2 id='month'>
       <%= link_to "<", date: @date.prev_month %>
       <%= @date.strftime("%B %Y") %>
       <%= link_to ">", date: @date.next_month %>
+      <% if current_user %>
+  <%= link_to 'Add An Event!', new_event_path, "data-reveal-id" => "eventModal"  %>
+<!--   <#%= link_to 'Add an event!', new_event_path %>
+ -->  <% end %>
     </h2>
       <%= calendar @date do |date| %>
         <%= date.day %>
@@ -48,10 +52,6 @@
     </div>
   </div>
 </div>
-<% if current_user %>
-  <%= link_to 'Add An Event!', new_event_path, "data-reveal-id" => "eventModal"  %>
-<!--   <#%= link_to 'Add an event!', new_event_path %>
- -->  <% end %>
 
    <div id="eventModal" class="reveal-modal" data-reveal>
         <%= render 'form' %>
