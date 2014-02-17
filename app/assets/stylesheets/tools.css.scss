@@ -2,4 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.container {
+  margin: 10%;
+  font-family: Lucida Grande;
+}
+
+#title {
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.container #rent_button {
+  background-color: red;
+  text-align: center;
+}
 
