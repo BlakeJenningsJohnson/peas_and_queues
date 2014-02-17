@@ -1,7 +1,8 @@
 $(document).ready(function(){
  
- $('#events_submit').click(function (e) {
+ $('#event_submit').click(function (e) {
     var url = $('form.new_event').attr('action');
+    console.log(url);
 
     $.ajax({
         type: 'POST',
