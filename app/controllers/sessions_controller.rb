@@ -19,9 +19,10 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session.destroy # do we need to destroy the whole session?
     session[:user_id] = nil
     flash[:notice] = "You have signed out."
+    redirect_to :back
+  rescue ActionController::RedirectBackError
     redirect_to root_path
   end
 end

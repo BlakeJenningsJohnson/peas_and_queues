@@ -15,7 +15,8 @@ class EventsController < ApplicationController
   def create
     make_event
     if @event.save && (@event.date - Date.today <= 7)
-      weather = WeatherReport.get_forecast('Time.new(@event.date.strftime("%Y, %m, %d")')[@event.time.strftime('%H').to_i]
+      weather = WeatherReport.get_forecast(
+                                          'Time.new(@event.date.strftime("%Y, %m, %d")')[@event.time.strftime('%H').to_i]
       @event.update(temperature: weather.apparentTemperature.round, conditions: weather.icon)
       current_user.events << @event
       if @event.recurring?

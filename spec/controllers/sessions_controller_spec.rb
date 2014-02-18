@@ -49,16 +49,20 @@ describe SessionsController do
   end
 
   describe 'DESTROY' do
-    it "should clear the session" do
+    before do
+      request.env["HTTP_REFERER"] = 'http://test.host/events'
       user = create(:user)
       session[:user_id] = user.id
+    end
+
+    it "should clear the session" do
       delete :destroy
       expect(session[:user_id]).to be_nil
     end
 
     it "should redirect to the home page" do
       delete :destroy
-      expect(response).to redirect_to root_url
+      expect(response).to redirect_to :back
     end
   end
 end
