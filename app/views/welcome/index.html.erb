@@ -1,5 +1,3 @@
-
- 
   <div class="row">
     <div class="large-12 columns">
  
@@ -86,24 +84,30 @@
  
               <h4>Blog</h4><hr>
               <div class="panel">
-                <h5><a href="#">Post Title 1</a></h5>
+                <h5><%= link_to @posts.last.title, post_path(@posts.last.id)%></h5>
  
                 <h6 class="subheader">
-                  Risus ligula, aliquam nec fermentum vitae, sollicitudin eget urna. Suspendisse ultrices ornare tempor...
+                  <p>
+                    <%= @posts.last.content %>
+                  </p>
                 </h6>
  
                 <h6><a href="#">Read More »</a></h6>
               </div>
  
               <div class="panel hide-for-small">
-                <h5><a href="#">Post Title 2 »</a></h5>
+                <h5><%= link_to @posts[-2].title, post_path(@posts[-2].id)%></h5>
               </div>
  
+              <% if @posts[-3] %>
               <div class="panel hide-for-small">
-                <h5><a href="#">Post Title 3 »</a></h5>
+                <h5><%= link_to @posts[-3].title, post_path(@posts[-3].id)%></h5>
               </div>
- 
-              <a href="#" class="right">Go To Blog »</a>
+              <% end %>
+            
+              <div class="right">
+                <%= link_to "Go To Blog", all_posts_path%>
+              </div>
             </div>
  
             <!-- End Feed -->

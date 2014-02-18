@@ -8,7 +8,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'jbuilder', '~> 1.2'
-gem 'resque'
+gem 'resque', '~> 1.22.0'
 
 gem 'figaro'
 gem 'omniauth'

@@ -1,7 +1,47 @@
-<h1>TOOL BOX GIT YER TOOLS HERE</h1>
+<div class="container">
+  <div id="title">
+    <h1>The Tool Box: Rent and Return</h1>
+  </div>
 
-<% @tools.each do |tool| %>
-  <%= tool.name %>
-  <%= tool.description %>
-  <%= tool.available %>
-<% end %>
+  <table>
+    <thead>
+      <tr>
+        <th width="200">Tool</th>
+        <th>Description</th>
+        <th width="150">In the Box?</th>
+        <th width="150">Rent or Return</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tools.each do |tool| %>
+      <tr>
+        <td><%= tool.name %></td>
+        <td><%= tool.description %></td>
+        <% if tool.available? %>
+          <td>Yes</td>
+        <% elsif current_user && tool.user_id == current_user.id %>
+            <td> You've got it! </td>
+        <% else %>
+            <td> Nope-- checked out! </td>
+        <% end %>
+
+        <div id="rent_button">
+          <% if current_user %>
+            <% if tool.available? %> 
+              <td><%= link_to "Rent It", rent_return_path(tool.id), :method => :rent_or_return, remote: true %></td>
+            <% elsif %>
+              <% if tool.user_id == current_user.id %> 
+                <td><%= link_to "Return It", rent_return_path(tool.id), :method => :rent_or_return, remote: true %></td>
+              <% else %> 
+                <td><%= link_to "Get in the queue NW", remote: true %></td>
+              <% end %> 
+            <% end %>
+          <% else %>
+            <td><%= link_to "Sign in to rent a tool", '/auth/twitter', remote: true %></td>
+          <% end %>
+        </div>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
