@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :add_new_comment]
+  before_action :all_posts
 
   def new
     if current_user.admin != true
@@ -26,7 +27,6 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
   end
   
   def blog_blast
@@ -44,5 +44,4 @@ private
   def post_params
     params.require(:post).permit(:title, :content, :user_id)
   end
-
 end
