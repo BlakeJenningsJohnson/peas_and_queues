@@ -31,5 +31,7 @@ PeasAndQueues::Application.routes.draw do
   post  '/tools',                    to: 'tools#create'
   get   '/tools',                    to: 'tools#index', as: :all_tools
   get   '/tools/:id',                to: 'tools#show', as: :tool
-  post '/tools/:id',                 to: 'tools#rent_or_return', as: :rent_return
+  post  '/tools/:id',                to: 'tools#rent_or_return', as: :rent_return
+
+  get   '/weather_update',           to: 'welcome#weather_report'
 end
