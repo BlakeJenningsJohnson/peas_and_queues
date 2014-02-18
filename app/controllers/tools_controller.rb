@@ -39,6 +39,7 @@ class ToolsController < ApplicationController
     respond_to do |format|
       format.html {redirect_to all_tools_path}
       format.js
+    end
   end
 
 private
