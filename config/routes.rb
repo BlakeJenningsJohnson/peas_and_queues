@@ -23,7 +23,7 @@ PeasAndQueues::Application.routes.draw do
   get   '/events',                   to: 'events#index'
   get   '/events/new',               to: 'events#new', as: :new_event
   post  '/events',                   to: 'events#create'
-  get   '/events/rsvp/:event',       to: 'events#rsvp', as: :rsvp
+  get   '/events/rsvp/:id',          to: 'events#rsvp', as: :rsvp
   get   '/events/:id/edit',          to: 'events#edit', as: :edit
   patch '/events/:id',               to: 'events#update', as: :event
 

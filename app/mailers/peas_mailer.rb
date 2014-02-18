@@ -13,5 +13,4 @@ class PeasMailer < ActionMailer::Base
     mail(to: @user.email,
           subject: 'Updated Profile')
   end
-
 end
