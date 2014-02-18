@@ -26,6 +26,10 @@
         <%= f.label :time %>
         <%= f.time_field :time %>
         </div>
+      <div class='row collapse'>
+        <%= f.label 'Is this a weekly recurring event?' %>
+        <%= f.check_box :recurring %>
+        </div>
       </div>
     </div>
     <div class='row'>
