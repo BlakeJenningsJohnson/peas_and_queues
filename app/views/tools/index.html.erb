@@ -28,16 +28,16 @@
         <div id="rent_button">
           <% if current_user %>
             <% if tool.available? %> 
-              <td><%= link_to "Rent It", rent_return_path(tool.id), :method => :rent_or_return %></td>
+              <td><%= link_to "Rent It", rent_return_path(tool.id), :method => :rent_or_return, remote: true %></td>
             <% elsif %>
               <% if tool.user_id == current_user.id %> 
-                <td><%= link_to "Return It", rent_return_path(tool.id), :method => :rent_or_return %></td>
+                <td><%= link_to "Return It", rent_return_path(tool.id), :method => :rent_or_return, remote: true %></td>
               <% else %> 
-                <td><%= link_to "Get in the queue NW" %></td>
+                <td><%= link_to "Get in the queue NW", remote: true %></td>
               <% end %> 
             <% end %>
           <% else %>
-            <td><%= link_to "Sign in to rent a tool", '/auth/twitter' %></td>
+            <td><%= link_to "Sign in to rent a tool", '/auth/twitter', remote: true %></td>
           <% end %>
         </div>
       </tr>

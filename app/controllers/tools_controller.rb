@@ -36,7 +36,9 @@ class ToolsController < ApplicationController
         flash[:notice] = "You have rented a #{@tool.name}. Don't forget to return it!"
     end
     @tool.save
-    redirect_to all_tools_path
+    respond_to do |format|
+      format.html {redirect_to all_tools_path}
+      format.js
   end
 
 private
