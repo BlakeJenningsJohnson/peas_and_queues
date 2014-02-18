@@ -64,15 +64,34 @@ describe ToolsController do
       session[:user_id] = current_user.id
     end
 
-    describe "a tool can be rented" do
-      it "changes the tool's status to rented" do
-        patch :rent_or_return, id: tool.id 
-        expect(tool.reload.available).to eq(false)
-      end
+    context "when a tool is available" do
+      describe "a tool can be rented" do
+        it "changes the tool's status to rented" do
+          patch :rent_or_return, id: tool.id 
+          expect(tool.reload.available).to eq(false)
+        end
 
-      it "establishes the user as the person renting" do
-        patch :rent_or_return, id: tool.id
-        expect(tool.reload.user_id).to eq(current_user.id)
+        it "establishes the user as the person renting" do
+          patch :rent_or_return, id: tool.id
+          expect(tool.reload.user_id).to eq(current_user.id)
+        end
+      end
+    end
+
+    context "when a tool is already checked out" do 
+      describe "a user can get on the waitlist" do
+        it "creates a new waitlist position" do
+          waitlist_count = Waitlist.count
+          post :waitlist, user_id: current_user.id, tool_id: tool.id
+
+          expect(Waitlist.count).to eq(waitlist_count + 1)
+        end 
+
+        # it "adds the correct user and tool id to waitlist" do
+        #   waitlist = create(:waitlist)
+        #   post :waitlist, user_id: current_user.id, tool_id: tool.id
+
+        #   expect(waitlist.user_id).to eq()
       end
     end
   end
