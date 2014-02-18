@@ -26,7 +26,7 @@
       <ul class="right">
           <% if current_user %>
           <li><%= link_to 'Sign Out', '/signout' %></li>
-          <li><%= link_to 'Profile', profile_path(current_user.id), "data-reveal-id" => "myModal"  %></li>
+          <li><%= link_to current_user.name, profile_path(current_user.id), "data-reveal-id" => "myModal"  %></li>
           <% else %>
           <li><%= link_to 'Sign In With Twitter', '/auth/twitter' %></li>
           <% end %>
@@ -38,7 +38,7 @@
             <li><%= link_to 'Tool Box', all_tools_path %></li>
                 <li><%= link_to 'Calendar', events_path %></li>
             <li class="divider"></li>
-            <li><label>News</label></li>
+            <li><label>Blog</label></li>
             <li><%= link_to 'Things To Mulch Upon', all_posts_path %></li>
           </ul>
         </li>

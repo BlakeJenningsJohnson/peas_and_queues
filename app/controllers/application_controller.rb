@@ -18,4 +18,9 @@ class ApplicationController < ActionController::Base
       WeatherReport.current_weather
     end
   end
+
+  def all_posts
+    @posts = Post.all
+  end
+  helper_method :all_posts
 end

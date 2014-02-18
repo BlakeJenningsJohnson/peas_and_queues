@@ -4,7 +4,7 @@ PeasAndQueues::Application.routes.draw do
 
   root  'welcome#index'
 
-  match '/auth/:provider/callback',  to: 'sessions#create', via: [:get, :post]
+  match '/auth/:provider/callback',  to: 'sessions#create', via: [:get, :post], as: :sign_in
   get   '/signout',                  to: 'sessions#destroy'
 
   get   '/users',                    to: 'users#show', as: :user_show
@@ -31,5 +31,5 @@ PeasAndQueues::Application.routes.draw do
   post  '/tools',                    to: 'tools#create'
   get   '/tools',                    to: 'tools#index', as: :all_tools
   get   '/tools/:id',                to: 'tools#show', as: :tool
-  patch '/tools/:id',                to: 'tools#rent_or_return'
+  post '/tools/:id',                 to: 'tools#rent_or_return', as: :rent_return
 end
