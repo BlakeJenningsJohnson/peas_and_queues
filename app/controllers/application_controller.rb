@@ -13,12 +13,6 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
-  def weather_report
-    @weather_report = cache('weather_report', expires_in: 1.hour) do
-      WeatherReport.current_weather
-    end
-  end
-
   def all_posts
     @posts = Post.all
   end

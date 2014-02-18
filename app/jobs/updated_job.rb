@@ -1,5 +1,4 @@
 class UpdatedJob
-
   @queue = :email 
 
   def self.perform(user_id)

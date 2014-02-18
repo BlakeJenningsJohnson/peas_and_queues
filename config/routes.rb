@@ -23,7 +23,7 @@ PeasAndQueues::Application.routes.draw do
   get   '/events',                   to: 'events#index'
   get   '/events/new',               to: 'events#new', as: :new_event
   post  '/events',                   to: 'events#create'
-  get   '/events/rsvp/:event',       to: 'events#rsvp', as: :rsvp
+  get   '/events/rsvp/:id',          to: 'events#rsvp', as: :rsvp
   get   '/events/:id/edit',          to: 'events#edit', as: :edit
   patch '/events/:id',               to: 'events#update', as: :event
 
@@ -31,5 +31,7 @@ PeasAndQueues::Application.routes.draw do
   post  '/tools',                    to: 'tools#create'
   get   '/tools',                    to: 'tools#index', as: :all_tools
   get   '/tools/:id',                to: 'tools#show', as: :tool
-  post '/tools/:id',                 to: 'tools#rent_or_return', as: :rent_return
+  post  '/tools/:id',                to: 'tools#rent_or_return', as: :rent_return
+
+  get   '/weather_update',           to: 'welcome#weather_report'
 end
