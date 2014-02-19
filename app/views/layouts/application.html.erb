@@ -40,6 +40,7 @@
             <li class="divider"></li>
             <li><label>Blog</label></li>
             <li><%= link_to 'Things To Mulch Upon', all_posts_path %></li>
+            <li><label>ADMIN</label></li>
             <% if current_user.admin? %>
             <li><%= link_to 'Add a Tool', new_tool_path %></li>
             <li><%= link_to 'Add a BlogPost', new_post_path %></li>
