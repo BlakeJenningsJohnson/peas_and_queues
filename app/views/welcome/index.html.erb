@@ -72,7 +72,7 @@
                 <li>Temperature: <%= @weather_report.temperature.round %> &deg; F </li>
                 <li>Feels Like: <%= @weather_report.apparentTemperature.round %> &deg; F</li>
                 <% if @weather_report.precipType %>
-                <li>Chance of <%= @weather_report.precipType %> : <%= @weather_report.precipProbability%></li>
+                <li>Chance of <%= @weather_report.precipType %> : <%= (@weather_report.precipProbability) * 100 %>%</li>
                 <% end %>
 
               </ul>
@@ -87,13 +87,11 @@
             <div class="large-4 small-12 columns">
  
               <h4>Blog</h4><hr>
-              <div class="panel">
                 <% @posts.order('created_at DESC').limit(3).each do |post| %>
                 <h5><%= link_to post.title, post_path(post.id) %></h5>
                 <h6 class="subheader"> <%= post.content.try(:truncate, 100) %></h6>
-              </div>
+                <hr>
               <% end %>
-            
               <div class="right">
                 <%= link_to "Go To Blog", all_posts_path%>
               </div>
