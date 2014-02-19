@@ -4,7 +4,6 @@ class WaitlistsController < ApplicationController
     @waitlist = Waitlist.new(waitlist_params)
     if @waitlist.save
       redirect_to all_tools_path
-      raise
     end
   end
 
