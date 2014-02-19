@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe WaitlistController do
+describe WaitlistsController do
   context "when a user is signed in" do
     let!(:tool){ create(:tool) }
     let(:current_user) { create(:user)}
@@ -23,7 +23,6 @@ describe WaitlistController do
 
           expect(assigns(:waitlist).user_id).to eq(current_user.id)
           expect(assigns(:waitlist).tool_id).to eq(tool.id)
-
         end
       end
     end
