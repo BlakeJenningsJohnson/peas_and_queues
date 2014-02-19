@@ -1,0 +1,28 @@
+    <div id='inline_<%= @event.id %>', style='background: #fff; padding: 20px;'>
+      <h2>Event: <%= @event.name %></h2>
+      <p> <%= @event.date.strftime('%A, %b %d') %>, at <%= @event.time.strftime('%H:%M %p') %></p>
+      <p><%= @event.description %></p>
+      Weather forecast:
+      <% if @event.temperature == nil %>
+        We don't know the forecasted weather yet! We're gardeners, not sages. (Although try our sage! It's delish.)<br>
+      <% else %>
+      <%= @event.temperature %> &deg; <br><br>
+      Conditions: <%= @event.conditions %><br><br>
+      <% end %>
+      Attendees:
+      <br><br>
+      <% @event.users.each do |attendee| %>
+         <ul>
+          <li><%= image_tag(attendee.avatar) %> </li>
+        </ul>
+  
+      <% end %>
+      <% if current_user && current_user.events.exclude?(@event) %>
+        <%= link_to 'RSVP to this event!', rsvp_path(@event.id) %><br>
+      <% end %>
+      <% if current_user && @event.host_id == current_user.id %>
+        <%= link_to 'Update this event!', edit_path(@event.id) %>
+      <% end %>
+    </div>
+  </div>
+</li>
