@@ -34,7 +34,7 @@
             <% elsif tool.user_id == current_user.id %>
                 <td><%= link_to "Return It", rent_return_path(tool.id), :method => :rent_or_return %></td>
             <% elsif (tool.users.where(id: current_user.id).count == 1) %>
-                <td> You're in the queue! We'll shoot you an email when you're number one. </td>
+                <td> You are currently #<%= Waitlist.place_in_waitlist(current_user.id, tool.id) %> in the queue! We'll shoot you an email when you're number one. </td>
             <% elsif tool.user_id != current_user.id %> 
                 <td>
                   <%= form_for @waitlist do |f| %>
