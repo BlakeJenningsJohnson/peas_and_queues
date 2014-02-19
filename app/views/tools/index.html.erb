@@ -28,16 +28,21 @@
         <div id="rent_button">
           <% if current_user %>
             <% if tool.available? %> 
-              <td><%= link_to "Rent It", rent_return_path(tool.id), :method => :rent_or_return, remote: true %></td>
+              <td><%= link_to "Rent It", rent_return_path(tool.id), :method => :rent_or_return %></td>
             <% elsif %>
               <% if tool.user_id == current_user.id %> 
-                <td><%= link_to "Return It", rent_return_path(tool.id), :method => :rent_or_return, remote: true %></td>
+                <td><%= link_to "Return It", rent_return_path(tool.id), :method => :rent_or_return %></td>
               <% else %> 
-                <td><%= link_to "Get in the queue NW", remote: true %></td>
+                <td>
+                  <%= form_for(@waitlist, url: '/tools/:tool_id/:user_id') do |f| %>
+                  <%= f.hidden_field :tool_id, value: tool.id %>
+                  <%= f.hidden_field :user_id, value: current_user.id %>
+                  <%= f.submit 'Add Your Name to the Waitlist.' %>
+                  <% end %></td>
               <% end %> 
             <% end %>
           <% else %>
-            <td><%= link_to "Sign in to rent a tool", '/auth/twitter', remote: true %></td>
+            <td><%= link_to "Sign in to rent a tool", '/auth/twitter' %></td>
           <% end %>
         </div>
       </tr>

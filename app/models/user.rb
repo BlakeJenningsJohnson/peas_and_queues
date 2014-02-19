@@ -15,6 +15,9 @@ class User < ActiveRecord::Base
   has_many :events, through: :rsvp
   has_many :comments
 
+  belongs_to :waitlist
+  has_many :tools, through: :waitlist
+
   def self.find_or_create_from_omniauth(auth_hash)
     user = User.find_by(uid: auth_hash["uid"]) || create_from_omniauth(auth_hash)
     return user

@@ -77,22 +77,5 @@ describe ToolsController do
         end
       end
     end
-
-    context "when a tool is already checked out" do 
-      describe "a user can get on the waitlist" do
-        it "creates a new waitlist position" do
-          waitlist_count = Waitlist.count
-          post :waitlist, user_id: current_user.id, tool_id: tool.id
-
-          expect(Waitlist.count).to eq(waitlist_count + 1)
-        end 
-
-        # it "adds the correct user and tool id to waitlist" do
-        #   waitlist = create(:waitlist)
-        #   post :waitlist, user_id: current_user.id, tool_id: tool.id
-
-        #   expect(waitlist.user_id).to eq()
-      end
-    end
   end
 end

@@ -11,6 +11,7 @@ class ToolsController < ApplicationController
 
   def index
     @tools = Tool.all
+    @waitlist = Waitlist.new
   end
   
   def create
