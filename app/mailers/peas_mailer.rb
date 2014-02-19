@@ -16,6 +16,7 @@ class PeasMailer < ActionMailer::Base
 
   def tool_available(user_id, tool_id)
     @user = User.find(user_id)
+    @tool = Tool.find(tool_id)
     mail(to: @user.email,
           subject: 'Your Tool Is Available!')
   end

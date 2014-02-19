@@ -10,7 +10,7 @@ class ToolsController < ApplicationController
   end
 
   def index
-    @tools = Tool.all
+    @tools = Tool.all.order(:name)
     @waitlist = Waitlist.new
   end
   
@@ -28,7 +28,7 @@ class ToolsController < ApplicationController
   def rent_or_return
     @tool = Tool.find(params[:id])
     if  @tool.available == false
-      if tool.waitlist
+      if @tool.waitlists.count != 0
         Waitlist.update_waitlist(params[:id])
       else
         @tool.update(status: 'available', user_id: nil)

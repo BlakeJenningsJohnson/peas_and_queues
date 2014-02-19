@@ -19,8 +19,10 @@ class Waitlist < ActiveRecord::Base
   end
 
   def self.update_waitlist(tool_id)
-    find_who_is_next
-    tool_hold
-    update_user
+    line_in_waitlist = find_who_is_next(tool_id)
+    raise
+    line_in_waitlist.tool_hold
+    line_in_waitlist.update_user
+    line_in_waitlist.email_user
   end
 end

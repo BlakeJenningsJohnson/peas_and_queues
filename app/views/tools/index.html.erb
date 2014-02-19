@@ -17,17 +17,19 @@
       <tr>
         <td><%= tool.name %></td>
         <td><%= tool.description %></td>
-        <% if tool.available? %>
+        <% if tool.status == 'available' %>
           <td>Yes</td>
+        <% elsif current_user && tool.status == 'on hold' && tool.user_id == current_user.id %>
+          <td> THIS TOOL IS HERE AND WAITING FOR YOUUUUU </td>
         <% elsif current_user && tool.user_id == current_user.id %>
             <td> You've got it! </td>
         <% else %>
-            <td> Nope-- checked out! </td>
+            <td> Not Available. </td>
         <% end %>
 
         <div id="rent_button">
           <% if current_user %>
-            <% if tool.available? %> 
+            <% if tool.available || (tool.status == 'on hold' && tool.user_id == current_user.id) %> 
               <td><%= link_to "Rent It", rent_return_path(tool.id), :method => :rent_or_return %></td>
             <% elsif tool.user_id == current_user.id %>
                 <td><%= link_to "Return It", rent_return_path(tool.id), :method => :rent_or_return %></td>
