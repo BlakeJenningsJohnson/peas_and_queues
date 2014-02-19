@@ -36,10 +36,15 @@
           <ul class="dropdown">
             <li><label>Community</label></li>
             <li><%= link_to 'Tool Box', all_tools_path %></li>
-                <li><%= link_to 'Calendar', events_path %></li>
+            <li><%= link_to 'Calendar', events_path %></li>
             <li class="divider"></li>
             <li><label>Blog</label></li>
             <li><%= link_to 'Things To Mulch Upon', all_posts_path %></li>
+            <% if current_user.admin? %>
+            <li><%= link_to 'Add a Tool', new_tool_path %></li>
+            <li><%= link_to 'Add a BlogPost', new_post_path %></li>
+            <% end %>
+
           </ul>
         </li>
       </ul>
