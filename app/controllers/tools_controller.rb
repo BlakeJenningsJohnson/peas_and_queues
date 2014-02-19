@@ -28,13 +28,14 @@ class ToolsController < ApplicationController
   def rent_or_return
     @tool = Tool.find(params[:id])
     if  @tool.available == false
-        @tool.update(available: true)
-        @tool.user_id = nil
+      if tool.waitlist
         Waitlist.update_waitlist(params[:id])
+      else
+        @tool.update(status: 'available', user_id: nil)
         flash[:notice] = "Thank you for returning your tool."
+      end
     else
-        @tool.update(available: false)
-        @tool.user_id = current_user.id
+        @tool.update(status: 'checked out', user_id: current_user.id)
         flash[:notice] = "You have rented a #{@tool.name}. Don't forget to return it!"
     end
     @tool.save
@@ -47,6 +48,6 @@ class ToolsController < ApplicationController
 private
 
   def tool_params
-    params.require(:tool).permit(:name, :description, :image, :user_id, :available)
+    params.require(:tool).permit(:name, :description, :image, :user_id, :status)
   end
 end

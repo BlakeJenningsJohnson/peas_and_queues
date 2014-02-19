@@ -3,7 +3,7 @@ class Tool < ActiveRecord::Base
   has_many :waitlists
   has_many :users, through: :waitlists
 
-  def available?
+  def available
     if self.status == 'available'
       true
     else
