@@ -4,8 +4,12 @@
     <!-- Content Slider -->
  
       <div class="row">
+        <div class="large-12 hide-for-small quote">
+            <p><strong>Garden Quote of the Day: </strong><%= @quote %></p>
+            <hr>
+        </div>
+      <div class="row">
         <div class="large-12 hide-for-small">
- 
           <div id="featured" data-orbit>
               <%= image_tag("gardens.png") %>
               <%= image_tag('weirdcar.jpg') %>
@@ -42,7 +46,7 @@
               <div class="row">
  
                 <div class="large-9 columns">
-                  <h5 class="subheader"><%= event.name %> </h5>
+                  <h5 class="subheader"><%= link_to event.name, event_show_path(event.id) %> </h5>
                   <p><%= event.date.strftime('%A, %b %d') %>, at <%= event.time.strftime('%H:%M %p') %></p>
                   <p>Hosted by: <%= User.find(event.host_id).name %><p>
                 </div>
@@ -84,24 +88,9 @@
  
               <h4>Blog</h4><hr>
               <div class="panel">
-                <h5><%= link_to @posts.last.title, post_path(@posts.last.id)%></h5>
- 
-                <h6 class="subheader">
-                  <p>
-                    <%= @posts.last.content %>
-                  </p>
-                </h6>
- 
-                <h6><a href="#">Read More »</a></h6>
-              </div>
- 
-              <div class="panel hide-for-small">
-                <h5><%= link_to @posts[-2].title, post_path(@posts[-2].id)%></h5>
-              </div>
- 
-              <% if @posts[-3] %>
-              <div class="panel hide-for-small">
-                <h5><%= link_to @posts[-3].title, post_path(@posts[-3].id)%></h5>
+                <% @posts.order('created_at DESC').limit(3).each do |post| %>
+                <h5><%= link_to post.title, post_path(post.id) %></h5>
+                <h6 class="subheader"> <%= post.content.try(:truncate, 100) %></h6>
               </div>
               <% end %>
             
@@ -126,7 +115,7 @@
             <div class="row">
  
               <div class="large-6 columns">
-                  <%= @quote %>
+                  <%#= @quote %>
               </div>
  
               <div class="large-6 small-12 columns">
