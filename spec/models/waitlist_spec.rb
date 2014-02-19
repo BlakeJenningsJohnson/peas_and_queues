@@ -1,10 +1,6 @@
 require 'spec_helper'
 
 describe Waitlist do
-  # let!(:user) { create(:user) }
-  # let!(:user1) { create(:user1) }
-  # let!(:tool) { create(:tool) }
-  # let!(:tool1) { create(:tool2) }
   let!(:line_in_waitlist) { create(:waitlist) } 
   let!(:line_in_waitlist1) { create(:waitlist1) }
   let!(:line_in_waitlist2) { create(:waitlist2) }
@@ -36,31 +32,29 @@ describe Waitlist do
       end
     end
 
-    describe 'email_user' do
+    # describe 'email_user' do
       
-      before(:each) do
-        ActionMailer::Base.delivery_method = :test
-        ActionMailer::Base.perform_deliveries = true
-        ActionMailer::Base.deliveries = []
-        user = create(:user, { email: 'davida@davidamail.com' } )
-        # WelcomeMailer.welcome(user.id).deliver
-      end
-      after(:each) do
-        ActionMailer::Base.deliveries.clear
-      end
+    #   before(:each) do
+    #     ActionMailer::Base.delivery_method = :test
+    #     ActionMailer::Base.perform_deliveries = true
+    #     ActionMailer::Base.deliveries = []
+    #   end
+    #   after(:each) do
+    #     ActionMailer::Base.deliveries.clear
+    #   end
 
-      it 'emails the user so they know to pick their tool up' do
-        line_in_waitlist.email_user
+    #   it 'emails the user so they know to pick their tool up' do
+    #     line_in_waitlist.email_user
         
-        expect(ActionMailer::Base.deliveries.count).to eq 1
-      end
+    #     expect(ActionMailer::Base.deliveries.count).to eq 1
+    #   end
 
-      it 'should set the email address to the correct email' do
-        line_in_waitlist.email_user
+    #   it 'should set the email address to the correct email' do
+    #     line_in_waitlist.email_user
 
-        expect(ActionMailer::Base.deliveries.first.email).to eq 'davida@davidamail.com'
-      end
-    end
-    
+    #     expect(ActionMailer::Base.deliveries.first.email).to eq 'davida@davidamail.com'
+    #   end
+    # end
+
   end
 end

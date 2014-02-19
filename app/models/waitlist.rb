@@ -11,7 +11,7 @@ class Waitlist < ActiveRecord::Base
   end
 
   def email_user
-    Resque.enqueue(ToolJob, self.user.id)
+    Resque.enqueue(ToolJob, self.user.id, self.tool_id)
   end
 
   def self.find_who_is_next(tool_id)
