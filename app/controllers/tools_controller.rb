@@ -30,6 +30,7 @@ class ToolsController < ApplicationController
     if  @tool.available == false
         @tool.update(available: true)
         @tool.user_id = nil
+        Waitlist.update_waitlist(params[:id])
         flash[:notice] = "Thank you for returning your tool."
     else
         @tool.update(available: false)
