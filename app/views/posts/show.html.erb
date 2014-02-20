@@ -4,9 +4,10 @@
 <h3>Comments</h3>
 <%= render 'recent_comments'  %>
 
+<% if current_user %>
 <h3> Got somethin' to say? Add a comment! </h3>
 
 <%= render 'comment' %>
-
+<% end %>
 
 <%= link_to 'Back to Blog', all_posts_path %>
