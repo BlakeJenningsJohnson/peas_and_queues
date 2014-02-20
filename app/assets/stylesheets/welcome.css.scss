@@ -8,8 +8,18 @@
 }
 
 .large-12.hide-for-small.quote {
+  margin-top: 1%;
   margin-bottom: 1%;
   color: #195730;
+  font-family: Papyrus;
+  font-style: italic;
+  text-align: center;
+  font-size: 14pt;
+}
+
+.large-12.hide-for-small.flash {
+  margin-bottom: 1%;
+  color: red;
   font-family: Papyrus;
   font-style: italic;
   text-align: center;
