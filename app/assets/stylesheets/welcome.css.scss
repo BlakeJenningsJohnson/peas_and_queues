@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/*/
 
+.large-4.small-6.columns {
+  text-align: center;
+}
+
 .large-4.small-6.columns ul li {
   list-style-type: none;
   font-weight: bold;
@@ -24,4 +28,9 @@
   font-style: italic;
   text-align: center;
   font-size: 14pt;
+}
+
+.weather-box img {
+  -moz-border-radius: 15px;
+  border-radius: 15px;
 }
