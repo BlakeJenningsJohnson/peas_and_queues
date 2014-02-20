@@ -20,7 +20,6 @@ class Waitlist < ActiveRecord::Base
 
   def self.update_waitlist(tool_id)
     line_in_waitlist = find_who_is_next(tool_id)
-    raise
     line_in_waitlist.tool_hold
     line_in_waitlist.update_user
     line_in_waitlist.email_user
@@ -32,6 +31,11 @@ class Waitlist < ActiveRecord::Base
         @index = n + 1
       end
     end
-      return @index
+    return @index
+  end
+
+  def self.remove_user_from_waitlist(tool_id)
+    line_in_waitlist = find_who_is_next(tool_id)
+    line_in_waitlist.destroy!
   end
 end

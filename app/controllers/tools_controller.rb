@@ -25,20 +25,28 @@ class ToolsController < ApplicationController
     end
   end
 
-  def rent_or_return
+  def rent
     @tool = Tool.find(params[:id])
-    if  @tool.available == false
-      if @tool.waitlists.count != 0
-        Waitlist.update_waitlist(params[:id])
-      else
-        @tool.update(status: 'available', user_id: nil)
-        flash[:notice] = "Thank you for returning your tool."
-      end
+    if @tool.waitlists.count == 0
     else
-        @tool.update(status: 'checked out', user_id: current_user.id)
-        flash[:notice] = "You have rented a #{@tool.name}. Don't forget to return it!"
+      Waitlist.remove_user_from_waitlist(params[:id])
     end
-    @tool.save
+    @tool.update(status: 'checked out', user_id: current_user.id)
+    flash[:notice] = "You have rented a #{@tool.name}. Don't forget to return it!"
+    respond_to do |format|
+      format.html {redirect_to all_tools_path}
+      format.js
+    end
+  end
+
+  def return
+    @tool = Tool.find(params[:id])
+    if @tool.waitlists.count == 0
+      @tool.update(status: 'available', user_id: nil)
+    else
+      Waitlist.update_waitlist(params[:id])
+    end
+    flash[:notice] = "Thank you for returning your tool."
     respond_to do |format|
       format.html {redirect_to all_tools_path}
       format.js

@@ -67,12 +67,12 @@ describe ToolsController do
     context "when a tool is available" do
       describe "a tool can be rented" do
         it "changes the tool's status to rented" do
-          patch :rent_or_return, id: tool.id 
-          expect(tool.reload.available).to eq(false)
+          patch :rent, id: tool.id 
+          expect(tool.reload.status).to eq 'checked out'
         end
 
         it "establishes the user as the person renting" do
-          patch :rent_or_return, id: tool.id
+          patch :rent, id: tool.id
           expect(tool.reload.user_id).to eq(current_user.id)
         end
       end

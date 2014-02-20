@@ -64,5 +64,12 @@ describe SessionsController do
       delete :destroy
       expect(response).to redirect_to :back
     end
+
+    it 'should escape a redirectBack error' do 
+      request.env["HTTP_REFERER"] = nil
+      delete :destroy
+
+      expect(response).to redirect_to root_path
+    end
   end
 end
