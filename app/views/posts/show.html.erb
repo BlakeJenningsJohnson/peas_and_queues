@@ -1,13 +1,65 @@
-<h1><%= @post.title %></h1>
-<p><%= @post.content %></p>
+    <!-- Nav Bar -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+      <div class="nav-bar right">
+<!--        <ul class="button-group">
+         <li><a href="#" class="button">Link 1</a></li>
+         <li><a href="#" class="button">Link 2</a></li>
+         <li><a href="#" class="button">Link 3</a></li>
+         <li><a href="#" class="button">Link 4</a></li>
+        </ul> -->
+      </div>
+      <h1>Things To Mulch On:<small>  A Garden Blog</small></h1>
+      <hr />
+    </div>
+  </div>
+ 
+  <!-- End Nav -->
+ 
+ 
+  <!-- Main Page Content and Sidebar -->
+ 
+  <div class="row">
+ 
+    <!-- Main Blog Content -->
+    <div class="large-12 columns" role="content">
+ 
+      <article>
+ 
+        <h3><%= @post.title %></h3>
+        <h6>Written by <a href="#"><%= @post.user.name %></a> on <%= @post.created_at.strftime('%b %d, %Y') %></h6>
+ 
+             <p><%= @post.content %></p>
 
-<h3>Comments</h3>
-<%= render 'recent_comments'  %>
 
-<% if current_user %>
-<h3> Got somethin' to say? Add a comment! </h3>
+     <!-- End Main Content -->
 
-<%= render 'comment' %>
-<% end %>
+        <h4>Comments</h4>
 
-<%= link_to 'Back to Blog', all_posts_path %>
+        <h6><%= render 'recent_comments'  %></h6>
+
+        <% if current_user %>
+        <h5> Got somethin' to say? Add a comment! </h5>
+
+        <p><%= render 'comment' %></p>
+
+        <% end %>
+    </div>
+      </article>
+  <!-- Footer -->
+ 
+  <footer class="row">
+    <div class="large-12 columns">
+      <hr />
+      <div class="row">
+        <div class="large-6 columns">
+          <p><%= link_to "All Blog Posts", all_posts_path %></p>
+        </div>
+        <div class="right">
+          <p><%= link_to "Back to the Main Garden", root_url %></p>
+        </div>
+        </div>
+      </div>
+    </div>
+  </footer>
