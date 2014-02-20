@@ -1,5 +1,5 @@
 class PeasMailer < ActionMailer::Base
-  default from: "peasncukes@peasandqueues.com"
+  default from: "psnqs@peasandqueues.com"
 
   def new_post_mailer(post_id, user_id)
     @post = Post.find(post_id)

@@ -5,12 +5,14 @@ class UsersController < ApplicationController
   end
 
   def update
-    puts params.inspect
     if @user.update(user_params)
-      Resque.enqueue(UpdatedJob, @user.id)
-    end
-    respond_to do |format|
-      format.json { head :no_content }
+      Resque.enqueue(UpdatedJob, @user.id) if @user.email
+      respond_to do |format|
+        format.json { head :no_content }
+        format.html { redirect_to root_url }
+      end
+    else
+      render :edit
     end
   end
 
