@@ -15,3 +15,9 @@ task :update_weather_events => :environment do
   Event.update_weather_events
   puts "Events all have updated weather."
 end
+
+task :upcoming_event => :environment do
+  puts "Sending event reminders"
+  Event.event_reminder
+  puts "Attendees have been reminded."
+end
