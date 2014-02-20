@@ -74,7 +74,7 @@
             <div class="large-4 small-6 columns">
               <h4>Weather Today</h4><hr>
               <ul>
-                <li><%= image_tag("#{weather_icon(@weather_report.icon)}" %></li>
+                <li class='weather-box'><%= image_tag("#{weather_icon(@weather_report.icon)}") %></li>
                 <li>Temperature: <%= @weather_report.temperature.round %> &deg; F </li>
                 <li>Feels Like: <%= @weather_report.apparentTemperature.round %> &deg; F</li>
                 <% if @weather_report.precipType %>
