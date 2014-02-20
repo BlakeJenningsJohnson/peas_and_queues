@@ -17,22 +17,24 @@
       <tr>
         <td><%= tool.name %></td>
         <td><%= tool.description %></td>
-        <% if tool.available? %>
+        <% if tool.status == 'available' %>
           <td>Yes</td>
+        <% elsif current_user && tool.status == 'on hold' && tool.user_id == current_user.id %>
+          <td> THIS TOOL IS HERE AND WAITING FOR YOUUUUU </td>
         <% elsif current_user && tool.user_id == current_user.id %>
             <td> You've got it! </td>
         <% else %>
-            <td> Nope-- checked out! </td>
+            <td> Not Available. </td>
         <% end %>
 
         <div id="rent_button">
           <% if current_user %>
-            <% if tool.available? %> 
-              <td><%= link_to "Rent It", rent_return_path(tool.id), :method => :rent_or_return %></td>
+            <% if tool.status == 'available' || (tool.status == 'on hold' && tool.user_id == current_user.id) %> 
+              <td><%= link_to "Rent It", rent_path(tool.id) %></td>
             <% elsif tool.user_id == current_user.id %>
-                <td><%= link_to "Return It", rent_return_path(tool.id), :method => :rent_or_return %></td>
+                <td><%= link_to "Return It", return_path(tool.id) %></td>
             <% elsif (tool.users.where(id: current_user.id).count == 1) %>
-                <td> You're in the queue! We'll shoot you an email when you're number one. </td>
+                <td> You are currently #<%= Waitlist.place_in_waitlist(current_user.id, tool.id) %> in the queue! We'll shoot you an email when you're number one. </td>
             <% elsif tool.user_id != current_user.id %> 
                 <td>
                   <%= form_for @waitlist do |f| %>
