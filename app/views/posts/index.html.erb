@@ -1,7 +1,46 @@
-<h1>Things to Mulch Over: A Garden Blog</h1>
-<% @posts.each do |post| %>
-  <h1><%= link_to post.title, post_path(post.id) %></h1>
-  <h3>Written by <%= User.find(post.user_id).name %></h2>
-  <%= post.content %>
-<% end %>
 
+
+    <!-- Nav Bar -->
+ 
+  <div class="row">
+    <div class="large-12 columns">
+      <div class="nav-bar right">
+      </div>
+      <h1>Things To Mulch On:<small>  A Garden Blog</small></h1>
+      <hr />
+    </div>
+  </div>
+ 
+  <!-- End Nav -->
+ 
+ 
+  <!-- Main Page Content and Sidebar -->
+ <% @posts.each do |post| %>
+  <div class="row">
+ 
+    <!-- Main Blog Content -->
+    <div class="large-12 columns" role="content">
+ 
+      <article>
+ 
+        <h3><%= link_to post.title, post_path(post.id) %></h3>
+        <h6>Written by <a href="#"><%= post.user.name %></a> on <%= post.created_at.strftime('%b %d, %Y') %></h6>
+ 
+             <p><%= post.content %></p>
+
+        <% end %>
+    </div>
+      </article>
+  <!-- Footer -->
+ 
+  <footer class="row">
+    <div class="large-12 columns">
+      <hr />
+      <div class="row">
+        <div class="right">
+          <p><%= link_to "Back to the Main Garden", root_url %></p>
+        </div>
+        </div>
+      </div>
+    </div>
+  </footer>

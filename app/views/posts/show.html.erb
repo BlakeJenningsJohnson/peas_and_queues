@@ -34,11 +34,11 @@
 
 
      <!-- End Main Content -->
-
+        <% if @post.comments != nil %>
         <h4>Comments</h4>
 
         <h6><%= render 'recent_comments'  %></h6>
-
+        <% end %>
         <% if current_user %>
         <h5> Got somethin' to say? Add a comment! </h5>
 
