@@ -1,4 +1,6 @@
 class UpdatedJob
+  extend HerokuResqueAutoscaler
+  
   @queue = :email 
 
   def self.perform(user_id)

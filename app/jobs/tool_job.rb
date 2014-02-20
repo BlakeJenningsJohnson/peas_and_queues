@@ -1,4 +1,6 @@
 class ToolJob
+  extend HerokuResqueAutoscaler
+  
   @queue = :email 
 
   def self.perform(user_id, tool_id)
