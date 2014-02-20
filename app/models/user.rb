@@ -2,12 +2,12 @@ class User < ActiveRecord::Base
   validates :name, presence: true
   validates :uid, presence: true, uniqueness: true
   validates :provider, presence: true
-  validates :phone,
-            uniqueness: true, 
-            format: { with: /\d/ },
-            length: { is: 10, message: "must be at least ten numbers" },
-            allow_nil: true,
-            allow_blank: true
+  # validates :phone,
+  #           uniqueness: true, 
+  #           format: { with: /\d/ },
+  #           length: { is: 10, message: "must be at least ten numbers" },
+  #           allow_nil: true,
+  #           allow_blank: true
   validates :email, uniqueness: true, 
             format: {with: /@/, message: "is not a valid address"}, 
             allow_nil: true,
