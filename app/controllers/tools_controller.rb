@@ -10,7 +10,7 @@ class ToolsController < ApplicationController
   end
 
   def index
-    @tools = Tool.all
+    @tools = Tool.all.order(:name)
     @waitlist = Waitlist.new
   end
   
@@ -25,18 +25,28 @@ class ToolsController < ApplicationController
     end
   end
 
-  def rent_or_return
+  def rent
     @tool = Tool.find(params[:id])
-    if  @tool.available == false
-        @tool.update(available: true)
-        @tool.user_id = nil
-        flash[:notice] = "Thank you for returning your tool."
+    if @tool.waitlists.count == 0
     else
-        @tool.update(available: false)
-        @tool.user_id = current_user.id
-        flash[:notice] = "You have rented a #{@tool.name}. Don't forget to return it!"
+      Waitlist.remove_user_from_waitlist(params[:id])
     end
-    @tool.save
+    @tool.update(status: 'checked out', user_id: current_user.id)
+    flash[:notice] = "You have rented a #{@tool.name}. Don't forget to return it!"
+    respond_to do |format|
+      format.html {redirect_to all_tools_path}
+      format.js
+    end
+  end
+
+  def return
+    @tool = Tool.find(params[:id])
+    if @tool.waitlists.count == 0
+      @tool.update(status: 'available', user_id: nil)
+    else
+      Waitlist.update_waitlist(params[:id])
+    end
+    flash[:notice] = "Thank you for returning your tool."
     respond_to do |format|
       format.html {redirect_to all_tools_path}
       format.js
@@ -46,6 +56,6 @@ class ToolsController < ApplicationController
 private
 
   def tool_params
-    params.require(:tool).permit(:name, :description, :image, :user_id, :available)
+    params.require(:tool).permit(:name, :description, :image, :user_id, :status)
   end
 end

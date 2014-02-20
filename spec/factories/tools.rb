@@ -6,7 +6,7 @@ FactoryGirl.define do
     name "hammer"
     description "Why do I need a hammer?"
     user_id nil
-    available true
+    status 'available'
   end
 
     factory :tool2, class: Tool do
@@ -14,6 +14,6 @@ FactoryGirl.define do
     name "shovel"
     description "Picks up dirt?"
     user_id 2
-    available false
+    status 'checked out'
   end
 end
