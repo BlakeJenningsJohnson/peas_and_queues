@@ -3,7 +3,7 @@ desc "This task is called by the Heroku scheduler add-on"
 task :update_weather => :environment do
   puts "Updating weather cache..."
   if Rails.env.production?
-    HTTParty.get('http://peas-n-cukes.herokuapp.com/weather_update')
+    HTTParty.get('http://peas-n-queues.herokuapp.com/weather_update')
   else
     HTTParty.get('http://localhost:3000/weather_update')
   end
