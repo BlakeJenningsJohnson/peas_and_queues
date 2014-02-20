@@ -4,10 +4,16 @@
     <!-- Content Slider -->
  
       <div class="row">
+        <% if flash[:notice] %>
+        <div class="large-12 hide-for-small flash">
+          <%= flash[:notice] %>
+        </div>
+        <% else %>
         <div class="large-12 hide-for-small quote">
             <p><strong>Garden Quote of the Day: </strong><%= @quote %></p>
             <hr>
         </div>
+        <% end %>
       <div class="row">
         <div class="large-12 hide-for-small">
           <div id="featured" data-orbit>

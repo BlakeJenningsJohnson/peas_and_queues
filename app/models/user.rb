@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
   has_many :waitlists
   has_many :tools, through: :waitlists
 
+  has_many :posts
+
   def self.find_or_create_from_omniauth(auth_hash)
     user = User.find_by(uid: auth_hash["uid"]) || create_from_omniauth(auth_hash)
     return user

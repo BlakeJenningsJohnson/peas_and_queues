@@ -1,4 +1,10 @@
-<% @comments.each do |comment| %>
-  <%= comment.comment %><br>
-  Posted by: <%= comment.user.name %><br><br>
-<% end %>
+  <% @comments.each do |comment| %>
+  <div class="panel">
+  <h6><%= comment.user.name %></h6>
+  <div class="row">
+    <div class="large-2 columns small-3"><%= image_tag(comment.user.avatar) %></div>
+    <div class="large-10 columns"><p><%= comment.comment %></p></div>
+  </div>
+  </div>
+  
+  <% end %>
