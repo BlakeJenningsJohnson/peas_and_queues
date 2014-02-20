@@ -8,7 +8,11 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'jbuilder', '~> 1.2'
-gem 'resque', '~> 1.22.0'
+
+# background job
+gem 'resque', '~> 1.23.0'
+# autoscaling
+gem 'heroku_resque_autoscaler'
 
 gem 'figaro'
 gem 'omniauth'
@@ -19,6 +23,7 @@ gem 'rails_12factor'
 gem 'foundation-rails'
 gem 'httparty'
 gem 'acts_as_commentable'
+
 
 group :development, :test do
   gem "rspec-rails"
