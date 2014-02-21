@@ -1,6 +1,18 @@
 PeasAndQueues::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {  
+        address:              "smtp.mandrillapp.com",  
+        port:                 587,  
+        enable_starttls_auto: true,  
+        user_name:            "blake.jennings@gmail.com", 
+        password:             ENV["MAILER_KEY"], # A MANDRILL API KEY  
+        authentication:       'login',  
+        domain:               'peas-n-queues.herokuapp.com'}
+
+  config.action_mailer.raise_delivery_errors = true
+
   config.action_mailer.default_url_options = { host: 'peas-n-queues.herokuapp.com'}
 
   # Code is not reloaded between requests.
