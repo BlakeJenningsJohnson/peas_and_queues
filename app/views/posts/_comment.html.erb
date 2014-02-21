@@ -2,8 +2,10 @@
 
 <div class='small-10 columns'>
   <%= f.label :comment %>
-  <%= f.text_area :comment %>
+  <%= f.text_area :comment, id: 'comment_content' %>
 </div>
   <%= f.hidden_field :post_id, value: @post.id %>
+<div id="submit_comment">
   <%= f.submit class: 'button' %>
+</div>
 <% end %>
