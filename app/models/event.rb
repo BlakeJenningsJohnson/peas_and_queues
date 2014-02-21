@@ -16,4 +16,12 @@ class Event < ActiveRecord::Base
       event.update(temperature: weather.apparentTemperature.round, conditions: weather.icon)
     end
   end
+
+  def self.event_reminder 
+    Event.where(date: (Date.today + 2.day)).each do |event|
+      event.users.each do |user|
+        Resque.enqueue(EventJob, event.id, user.id)
+      end
+    end
+  end
 end

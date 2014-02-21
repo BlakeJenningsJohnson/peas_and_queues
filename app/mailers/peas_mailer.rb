@@ -20,4 +20,11 @@ class PeasMailer < ActionMailer::Base
     mail(to: @user.email,
           subject: 'Your Tool Is Available!')
   end
+
+  def upcoming_event(event_id, user_id)
+    @event = Event.find(event_id)
+    @user = User.find(user_id)
+    mail(to: @user.email,
+          subject: 'Your event is coming up!')
+  end
 end
