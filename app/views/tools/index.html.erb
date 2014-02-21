@@ -24,9 +24,9 @@
         <div class='available'>
         <% if current_user %>
           <% if tool.status == 'available' || (tool.status == 'on hold' && tool.user_id == current_user.id) %> 
-            <%= link_to "Rent It", rent_path(tool.id) %>
+            <%= link_to "Rent It", rent_path(tool.id), method: 'patch' %>
           <% elsif tool.user_id == current_user.id %>
-              <%= link_to "Return It", return_path(tool.id) %>
+              <%= link_to "Return It", return_path(tool.id), method: 'patch' %>
           <% elsif (tool.users.where(id: current_user.id).count == 1) %>
                You are currently #<%= Waitlist.place_in_waitlist(current_user.id, tool.id) %> in the queue! We'll shoot you an email when you're number one. 
           <% elsif tool.user_id != current_user.id %> 

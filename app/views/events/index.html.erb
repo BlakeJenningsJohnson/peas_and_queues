@@ -1,5 +1,5 @@
 <div class="row">
-  <div class='small-12 columns'>
+  <div class='small-12 columns hide-for-small'>
     <div id='events'>
       <h2 id='month'>
       <%= link_to "<", date: @date.prev_month %>
@@ -52,6 +52,25 @@
     </div>
   </div>
 </div>
+
+  <div class="large-12 columns show-for-small">
+ 
+  <%= @date.inspect %> 
+  <br><br>
+  Upcoming events!
+  <br><br>
+    <% @events.order('date desc').each do |event| %>
+      <div class="row">
+        <div class="large-9 columns">
+          <h5 class="subheader"><%= link_to event.name, event_show_path(event.id) %> </h5>
+          <p><%= event.date.strftime('%A, %b %d') %>, at <%= event.time.strftime('%H:%M %p') %></p>
+          <p>Hosted by: <%= User.find(event.host_id).name %><p>
+        </div>
+      </div>
+      <hr>
+        <% end %>        
+ 
+  </div>
 
    <div id="eventModal" class="reveal-modal" data-reveal>
         <%= render 'form' %>
