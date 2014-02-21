@@ -1,5 +1,5 @@
 class EmailJob
-  extend HerokuResqueAutoscaler if Rails.env.production?
+  extend HerokuResqueAutoscaler
 
   @queue = :email 
 
