@@ -11,11 +11,15 @@ class Waitlist < ActiveRecord::Base
   end
 
   def email_user
-    Resque.enqueue(ToolJob, self.user.id, self.tool_id)
+    Resque.enqueue(ToolJob, self.user.id, self.tool_id) if user.email
   end
 
   def self.find_who_is_next(tool_id)
      Waitlist.where(tool_id: tool_id).order('id ASC').first
+  end
+
+  def self.array_of_user_ids(tool_id)
+    Waitlist.where(tool_id: tool_id).map {|line| line.user_id }
   end
 
   def self.update_waitlist(tool_id)

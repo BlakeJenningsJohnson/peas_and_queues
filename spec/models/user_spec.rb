@@ -32,18 +32,6 @@ describe User do
         
         expect(build(:user1, email: 'blake@blake.com')).to be_invalid
       end
-
-      it 'has a phone number that is valid' do
-
-        expect(build(:user, phone: 'davida')).to be_invalid
-        expect(build(:user, phone: '9144208923')).to be_valid
-      end
-
-      it 'if it has a number, it has a unique number' do
-        create(:user, phone: '9144208923')
-        
-        expect(build(:user1, phone: '9144208923')).to be_invalid
-      end
     end
   end
 end
