@@ -8,14 +8,14 @@ class SessionsController < ApplicationController
       
       if @user
         session[:user_id] = @user.id
-        flash[:notice] = "Welcome to PeasnCukes!"
+        flash[:notice] = "Welcome to Peas-n-Queues!"
         redirect_to "/"
-      else
-        redirect_to "/", notice: "Failed to save user."
       end
     else
       redirect_to "/", notice: "Failed to authenticate. Please try again."
     end
+  rescue OAuth::Unauthorized
+     redirect_to "/", notice: "Failed to save user."
   end
 
   def destroy

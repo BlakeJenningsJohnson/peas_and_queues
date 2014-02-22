@@ -11,7 +11,8 @@ class ToolsController < ApplicationController
 
   def index
     @tools = Tool.all.order(:name)
-    @waitlist = Waitlist.new
+    # @waitlist = Waitlist.new
+    @tool = Tool.new
   end
   
   def create
@@ -25,37 +26,41 @@ class ToolsController < ApplicationController
     end
   end
 
-  def availability
-    Tool.rent_return_queue(params[:id],current_user.id,params[:status])
-  end
-
-  def rent
-    @tool = Tool.find(params[:id])
-    if @tool.waitlists.count == 0
-    else
-      Waitlist.remove_user_from_waitlist(params[:id])
-    end
-    @tool.update(status: 'checked out', user_id: current_user.id)
-    flash[:notice] = "You have rented a #{@tool.name}. Don't forget to return it!"
+  def status
+    Tool.rent_return_queue(params[:tool][:tool_id],current_user.id,params[:tool][:action])
     respond_to do |format|
       format.html {redirect_to all_tools_path}
       format.js
     end
   end
 
-  def return
-    @tool = Tool.find(params[:id])
-    if @tool.waitlists.count == 0
-      @tool.update(status: 'available', user_id: nil)
-    else
-      Waitlist.update_waitlist(params[:id])
-    end
-    flash[:notice] = "Thank you for returning your tool."
-    respond_to do |format|
-      format.html {redirect_to all_tools_path}
-      format.js
-    end
-  end
+  # def rent
+  #   @tool = Tool.find(params[:id])
+  #   if @tool.waitlists.count == 0
+  #   # else
+  #   #   Waitlist.remove_user_from_waitlist(params[:id])
+  #   # end
+  #   # @tool.update(status: 'checked out', user_id: current_user.id)
+  #   flash[:notice] = "You have rented a #{@tool.name}. Don't forget to return it!"
+  #   respond_to do |format|
+  #     format.html {redirect_to all_tools_path}
+  #     format.js
+  #   end
+  # end
+
+  # def return
+  #   @tool = Tool.find(params[:id])
+  #   if @tool.waitlists.count == 0
+  #     @tool.update(status: 'available', user_id: nil)
+  #   else
+  #     Waitlist.update_waitlist(params[:id])
+  #   end
+  #   flash[:notice] = "Thank you for returning your tool."
+  #   respond_to do |format|
+  #     format.html {redirect_to all_tools_path}
+  #     format.js
+  #   end
+  # end
 
 private
 
