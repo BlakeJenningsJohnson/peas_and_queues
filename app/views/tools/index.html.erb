@@ -2,53 +2,47 @@
   <div id="title">
     <h1>The Tool Box: Rent and Return</h1>
   </div>
-
-  <table>
-    <thead>
-      <tr>
-        <th width="200">Tool</th>
-        <th width="300">Description</th>
-        <th width="150">In the Box?</th>
-        <th width="150">Rent or Return</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @tools.each do |tool| %>
-      <tr>
-        <td><%= tool.name %></td>
-        <td><%= tool.description %></td>
-        <% if tool.status == 'available' %>
-          <td>Yes</td>
-        <% elsif current_user && tool.status == 'on hold' && tool.user_id == current_user.id %>
-          <td> THIS TOOL IS HERE AND WAITING FOR YOUUUUU </td>
-        <% elsif current_user && tool.user_id == current_user.id %>
-            <td> You've got it! </td>
-        <% else %>
-            <td> Not Available. </td>
-        <% end %>
-
-        <div id="rent_button">
-          <% if current_user %>
-            <% if tool.status == 'available' || (tool.status == 'on hold' && tool.user_id == current_user.id) %> 
-              <td><%= link_to "Rent It", rent_path(tool.id) %></td>
-            <% elsif tool.user_id == current_user.id %>
-                <td><%= link_to "Return It", return_path(tool.id) %></td>
-            <% elsif (tool.users.where(id: current_user.id).count == 1) %>
-                <td> You are currently #<%= Waitlist.place_in_waitlist(current_user.id, tool.id) %> in the queue! We'll shoot you an email when you're number one. </td>
-            <% elsif tool.user_id != current_user.id %> 
-                <td>
-                  <%= form_for @waitlist do |f| %>
-                  <%= f.hidden_field :tool_id, value: tool.id %>
-                  <%= f.hidden_field :user_id, value: current_user.id %>
-                  <%= f.submit 'Add Your Name to the Waitlist.' %>
-                  <% end %></td>
-            <% end %>
+   <div class="row">
+    <% @tools.each do |tool| %>
+      <div class="large-4 small-8 columns">
+        <div class='tool_box'>
+         <h3> 
+          <%= tool.name %>:</h3>
+          <%= tool.description %>
+         <p>
+          <br>
+          <% if tool.status == 'available' %>
+           Available!
+          <% elsif current_user && tool.status == 'on hold' && tool.user_id == current_user.id %>
+            THIS TOOL IS HERE AND WAITING FOR YOUUUUU!
+          <% elsif current_user && tool.user_id == current_user.id %>
+             You've got this tool! 
           <% else %>
-            <td><%= link_to "Sign in to rent a tool", '/auth/twitter' %></td>
+             Not Available. 
           <% end %>
-        </div>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+          <br>
+        <div class='available'>
+        <% if current_user %>
+          <% if tool.status == 'available' || (tool.status == 'on hold' && tool.user_id == current_user.id) %> 
+            <%= link_to "Rent It", rent_path(tool.id), method: 'patch' %>
+          <% elsif tool.user_id == current_user.id %>
+              <%= link_to "Return It", return_path(tool.id), method: 'patch' %>
+          <% elsif (tool.users.where(id: current_user.id).count == 1) %>
+               You are currently #<%= Waitlist.place_in_waitlist(current_user.id, tool.id) %> in the queue! We'll shoot you an email when you're number one. 
+          <% elsif tool.user_id != current_user.id %> 
+              
+                <%= form_for @waitlist do |f| %>
+                <%= f.hidden_field :tool_id, value: tool.id %>
+                <%= f.hidden_field :user_id, value: current_user.id %>
+                <%= f.submit 'Add Your Name to the Waitlist.' %>
+                <% end %>
+          <% end %>
+        <% else %>
+          <%= link_to "Sign in to rent a tool", '/auth/twitter' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+    <% end  %>
+  </div>
+
