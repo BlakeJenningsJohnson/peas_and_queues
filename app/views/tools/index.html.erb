@@ -19,20 +19,7 @@
           <% if @availability == 'queue' %>
             You are currently #<%= Waitlist.place_in_waitlist(current_user.id, tool.id) %> in the queue! We'll shoot you an email when you're number one. 
           <% else %>
-            <%= link_to @status, tool_availability_path(@status) %>
-          <% if tool.status == 'available' || (tool.status == 'on hold' && tool.user_id == current_user.id) %> 
-            <%= link_to "Rent It", rent_path(tool.id), method: 'patch' %>
-          <% elsif tool.user_id == current_user.id %>
-              <%= link_to "Return It", return_path(tool.id), method: 'patch' %>
-          <% elsif (tool.users.where(id: current_user.id).count == 1) %>
-               You are currently #<%= Waitlist.place_in_waitlist(current_user.id, tool.id) %> in the queue! We'll shoot you an email when you're number one. 
-          <% elsif tool.user_id != current_user.id %> 
-              
-                <%= form_for @waitlist do |f| %>
-                <%= f.hidden_field :tool_id, value: tool.id %>
-                <%= f.hidden_field :user_id, value: current_user.id %>
-                <%= f.submit 'Add Your Name to the Waitlist.' %>
-                <% end %>
+            <%= link_to @status, tool_status_path(@action, tool.id) %>
           <% end %>
         <% else %>
           <%= link_to "Sign in to rent a tool", '/auth/twitter' %>

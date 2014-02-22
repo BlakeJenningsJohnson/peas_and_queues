@@ -34,6 +34,7 @@ PeasAndQueues::Application.routes.draw do
   get   '/tools/:id',                to: 'tools#show', as: :tool
   patch '/tools/rent/:id',           to: 'tools#rent', as: :rent
   patch '/tools/return/:id',         to: 'tools#return', as: :return
+  patch '/tools/:status'/:id,        to: 'tools#availability', as: :tool_status
   post  '/waitlist',                 to: 'waitlists#create', as: :waitlists
 
   get   '/weather_update',           to: 'welcome#weather_report'

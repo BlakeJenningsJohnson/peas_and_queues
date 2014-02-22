@@ -25,6 +25,10 @@ class ToolsController < ApplicationController
     end
   end
 
+  def availability
+    Tool.rent_return_queue(params[:id],current_user.id,params[:status])
+  end
+
   def rent
     @tool = Tool.find(params[:id])
     if @tool.waitlists.count == 0
