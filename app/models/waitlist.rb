@@ -18,6 +18,10 @@ class Waitlist < ActiveRecord::Base
      Waitlist.where(tool_id: tool_id).order('id ASC').first
   end
 
+  def self.array_of_user_ids(tool_id)
+    Waitlist.where(tool_id: tool_id).map {|line| line.user_id }
+  end
+
   def self.update_waitlist(tool_id)
     line_in_waitlist = find_who_is_next(tool_id)
     line_in_waitlist.tool_hold
