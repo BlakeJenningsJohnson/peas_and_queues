@@ -11,15 +11,8 @@
           <%= tool.description %>
          <p>
           <br>
-          <% if tool.status == 'available' %>
-           Available!
-          <% elsif current_user && tool.status == 'on hold' && tool.user_id == current_user.id %>
-            THIS TOOL IS HERE AND WAITING FOR YOUUUUU!
-          <% elsif current_user && tool.user_id == current_user.id %>
-             You've got this tool! 
-          <% else %>
-             Not Available. 
-          <% end %>
+          <% availability(tool.id, current_user.id) %>
+          <%= @response %>
           <br>
         <div class='available'>
         <% if current_user %>
