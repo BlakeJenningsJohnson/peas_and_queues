@@ -1,50 +1,39 @@
 require 'spec_helper'
 
-# Specs in this file have access to a helper object that includes
-# the ToolsHelper. For example:
-#
-# describe ToolsHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
-
 # How do I get this to return the right thing?
 describe ToolsHelper do
   describe '#availability' do
-    let(:user) { create(:user) }
-    let(:tool) { create(:tool) }
+    let!(:user) { create(:user) }
+    let!(:tool) { create(:tool) }
 
-    it 'should return "available" if the tool status == available' do
+    it 'should assign "available" to @availability if the tool status == available' do
       helper.availability(tool.id, user.id)
 
-      expect(assigns(:availability)).to eq 'Available!'
+      expect().to eq 'Available!'
     end
 
-    it 'should return "That tool is here for you!" when the tool is on hold and has the user.id' do
-      tool.update(status: 'on hold')
-      tool.update(user_id: user.id)
-      helper.availability(tool.id, user.id)
+    # it 'should return "That tool is here for you!" when the tool is on hold and has the user.id' do
+    #   tool.update(status: 'on hold')
+    #   tool.update(user_id: user.id)
+    #   helper.availability(tool.id, user.id)
 
-      expect(assigns(:availability)).to eq 'That tool is here for you!'
-    end
+    #   expect(assigns(:availability)).to eq 'That tool is here for you!'
+    # end
 
-    it "should return You've GOT this tool! when the user has the tool" do
-      tool.update(status: 'checked out')
-      tool.update(user_id: user.id)
-      helper.availability(tool.id, user.id)
+    # it "should return You've GOT this tool! when the user has the tool" do
+    #   tool.update(status: 'checked out')
+    #   tool.update(user_id: user.id)
+    #   helper.availability(tool.id, user.id)
 
-      expect(assigns(:availability)).to eq "You've GOT this tool!"
-    end
+    #   expect(assigns(:availability)).to eq "You've GOT this tool!"
+    # end
 
-    it "should return 'Not Available!' if the tool is checked out and not belonging to the user" do
-      tool.update(status: 'checked out')
-      helper.availability(tool.id, user.id)
+    # it "should return 'Not Available!' if the tool is checked out and not belonging to the user" do
+    #   tool.update(status: 'checked out')
+    #   helper.availability(tool.id, user.id)
 
-      expect(assigns(:availability)).to eq 'Not Available!'
-    end
+    #   expect(assigns(:availability)).to eq 'Not Available!'
+    # end
   end
 end
 
