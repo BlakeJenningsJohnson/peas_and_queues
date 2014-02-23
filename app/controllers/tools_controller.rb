@@ -27,7 +27,9 @@ class ToolsController < ApplicationController
   end
 
   def status
-    Tool.rent_return_queue(params[:tool][:tool_id],current_user.id,params[:tool][:action])
+    Tool.rent_return_queue(params[:tool][:tool_id],
+                            current_user.id,
+                            params[:tool][:action])
     respond_to do |format|
       format.html {redirect_to all_tools_path}
       format.js
