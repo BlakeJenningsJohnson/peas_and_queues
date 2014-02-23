@@ -3,7 +3,7 @@ class Tool < ActiveRecord::Base
   has_many :waitlists
   has_many :users, through: :waitlists
 
-  def rent
+  def rent(user_id)
     if self.waitlists.count != 0
       Waitlist.remove_user_from_waitlist(id)
     end
@@ -21,7 +21,7 @@ class Tool < ActiveRecord::Base
   def self.rent_return_queue(tool_id,user_id,action)
     tool = Tool.find(tool_id)
     if action == 'rent'
-      tool.rent
+      tool.rent(user_id)
     elsif action == 'return'
       tool.return
     elsif action == 'waitlist'
