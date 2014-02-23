@@ -11,18 +11,18 @@
           <%= tool.description %>
          <p>
           <br>
-          <% availability(tool.id, current_user) %>
-          <%= @availability %>
+          <% availability(tool, current_user) %>
+          <%= @tool_response[0] %>
           <br>
         <div class='available'>
         <% if current_user %>
-          <% if @availability == 'queue' %>
+          <% if @tool_response[1] == 'queue' %>
             You are currently #<%= Waitlist.place_in_waitlist(current_user.id, tool.id) %> in the queue! We'll shoot you an email when you're number one. 
           <% else %>
              <%= form_for(@tool, url: tool_status_path) do |f| %>
                 <%= f.hidden_field :tool_id, value: tool.id %>
-                <%= f.hidden_field :action, value: @action %>
-                <%= f.submit @status %>
+                <%= f.hidden_field :action, value: @tool_response[2] %>
+                <%= f.submit @tool_response[1] %>
                 <% end %>
           <% end %>
         <% else %>
