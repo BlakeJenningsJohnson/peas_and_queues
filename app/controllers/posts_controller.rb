@@ -31,7 +31,7 @@ class PostsController < ApplicationController
   
   def blog_blast
     User.all.each do |user|
-      Resque.enqueue(EmailJob, @post.id, user.id)
+      Resque.enqueue(EmailJob, @post.id, user.id) if user.email
     end
   end
   
