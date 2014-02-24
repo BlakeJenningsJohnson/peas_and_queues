@@ -20,7 +20,7 @@ class Event < ActiveRecord::Base
   def self.event_reminder 
     Event.where(date: (Date.today + 2.day)).each do |event|
       event.users.each do |user|
-        Resque.enqueue(EventJob, event.id, user.id)
+        Resque.enqueue(EventJob, event.id, user.id) if user.email
       end
     end
   end
