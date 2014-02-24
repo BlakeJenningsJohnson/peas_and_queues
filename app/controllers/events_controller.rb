@@ -6,6 +6,7 @@ class EventsController < ApplicationController
     @events_by_date = @events.group_by(&:date)
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
     @event = Event.new
+    @small_calendar = Event.where(date: (Date.today)..(Date.today + 1.year)).order('date ASC')
   end
 
   def new

@@ -20,7 +20,7 @@
               <div class='hidden'>
                 <div id='inline_<%= event.id %>', style='background: #fff; padding: 20px;'>
                   <h2>Event: <%= event.name %></h2>
-                  <p> <%= event.date.strftime('%A, %b %d') %>, at <%= event.time.strftime('%H:%M %p') %></p>
+                  <p> <%= event.date.strftime('%A, %b %d') %>, at <%= event.time.strftime('%I:%M %p') %></p>
                   <p><%= event.description %></p>
                   Weather forecast:
                   <% if event.temperature == nil %>
@@ -59,11 +59,11 @@
   <br><br>
   Upcoming events!
   <br><br>
-    <% @events.order('date desc').each do |event| %>
+    <% @small_calendar.order('date desc').each do |event| %>
       <div class="row">
         <div class="large-9 columns">
           <h5 class="subheader"><%= link_to event.name, event_show_path(event.id) %> </h5>
-          <p><%= event.date.strftime('%A, %b %d') %>, at <%= event.time.strftime('%H:%M %p') %></p>
+          <p><%= event.date.strftime('%A, %b %d') %>, at <%= event.time.strftime('%I:%M %p') %></p>
           <p>Hosted by: <%= User.find(event.host_id).name %><p>
         </div>
       </div>
