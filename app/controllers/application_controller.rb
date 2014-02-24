@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def all_posts
-    @posts = Post.all
+    @posts = Post.all.order('created_at DESC')
   end
   helper_method :all_posts
 end
