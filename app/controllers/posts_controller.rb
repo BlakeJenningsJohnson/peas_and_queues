@@ -23,7 +23,7 @@ class PostsController < ApplicationController
 
   def show
     @comment = @post.comments.new
-    @comments = @post.comments.order('created_at ASC').limit(3)
+    @comments = @post.comments.order('created_at ASC')
   end
 
   def index
